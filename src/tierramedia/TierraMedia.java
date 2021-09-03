@@ -175,7 +175,6 @@ public class TierraMedia {
 				}
 			} catch (Exception e2) {
 				e2.printStackTrace();
-
 			}
 		}
 
@@ -199,28 +198,4 @@ public class TierraMedia {
 		System.out.println(Arrays.toString(atracciones));
 		System.out.println(usuarios);
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

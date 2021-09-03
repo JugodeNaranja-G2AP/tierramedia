@@ -9,14 +9,14 @@ public class Usuario {
 	private int presupuesto;
 	private double tiempoDisponible;
 	private Tipo tipoAtraccionPreferida;
-	private List<Producto> sugerenciasDiarias;
+	protected List<Producto> productosReservados; //cambié el nombre de la variable, se llamaba "sugerenciasDiarias"
 
 	public Usuario(String nombre, int presupuesto, double tiempoDisponible, Tipo tipoDeAtraccionPreferida) {
 		this.nombre = nombre;
 		this.presupuesto = presupuesto;
 		this.tiempoDisponible = tiempoDisponible;
 		this.tipoAtraccionPreferida = tipoDeAtraccionPreferida;
-		this.sugerenciasDiarias = new ArrayList<Producto>();
+		this.productosReservados = new ArrayList<Producto>();
 	}
 
 	public String getNombre() {
@@ -59,7 +59,7 @@ public class Usuario {
 		Double tiempo = producto.getTiempo();
 		int costo = producto.getCosto();
 
-		sugerenciasDiarias.add(producto);
+		productosReservados.add(producto);
 		restarTiempoDisponible(tiempo);
 		restarPresupuesto(costo);
 
