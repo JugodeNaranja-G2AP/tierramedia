@@ -55,10 +55,8 @@ public class Atraccion  implements Producto {
 
 	@Override
 	public String toString() {
-		return "Atraccion:\n nombre = " + nombre + ",\n Costo de visita = " + costoDeVisita
-				+ " Monedas de oro,\n Tiempo de visita = " + tiempoDeVisita + " horas,\n Cupo de personas = "
+		return "Atraccion:\n nombre : " + nombre + ",\n Costo de visita : " + costoDeVisita
+				+ " Monedas de oro,\n Tiempo de visita : " + tiempoDeVisita + " horas,\n Cupo de personas : "
 				+ cupoDePersonas + ",\n Tipo = " + tipo + "] \n\n";
 	}
-
-
 }
