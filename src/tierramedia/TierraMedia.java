@@ -10,9 +10,8 @@ import java.util.List;
 
 public class TierraMedia {
 
-	@SuppressWarnings("unused")
 	protected List<Usuario> usuarios;
-	private Atraccion[] atracciones;
+	private List<Atraccion> atracciones;
 	@SuppressWarnings("unused")
 	private Promocion[] promos;
 
@@ -20,7 +19,7 @@ public class TierraMedia {
 	}
 
 	public void agregarTodasAtracciones(String archivoAtracciones) {
-		this.atracciones = obtenerAtraccionesDesdeArchivo(archivoAtracciones);
+		this.atracciones = CargarAtracciones.obtener(archivoAtracciones);
 	}
 
 	public void agregarTodasPromociones(String archivoPromos) {
@@ -37,99 +36,7 @@ public class TierraMedia {
 	}
 
 	public void agregarUsuariosDesdeArchivo(String archivo) {
-		this.usuarios = obtenerUsuariosDesdeArchivo(archivo);
-	}
-
-	public List<Usuario> obtenerUsuariosDesdeArchivo(String archivo) {
-		FileReader fr = null;
-		BufferedReader br = null;
-		List<Usuario> usuarios = new ArrayList<Usuario>();
-
-		try {
-			fr = new FileReader(archivo);
-			br = new BufferedReader(fr);
-
-			String linea = br.readLine();
-
-			while (linea != null) {
-				try {
-					String[] datosUsuarios = linea.split(";");
-					String nombre = datosUsuarios[0];
-					int presupuesto = Integer.parseInt(datosUsuarios[1]);
-					double tiempo = Double.parseDouble(datosUsuarios[2]);
-					Tipo tipo = Tipo.valueOf(Tipo.class, datosUsuarios[3].trim().toUpperCase());
-					Usuario usuario = new Usuario(nombre, presupuesto, tiempo, tipo);
-
-					usuarios.add(usuario);
-					linea = br.readLine();
-
-				} catch (NumberFormatException e) {
-					System.err.println("Uno de los datos leídos no es un double o un entero");
-				}
-
-			}
-			return usuarios;
-
-		} catch (IOException e) {
-			e.printStackTrace();
-
-		} finally {
-			try {
-				if (fr != null) {
-					fr.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-
-		return usuarios;
-
-	}
-
-	public Atraccion[] obtenerAtraccionesDesdeArchivo(String archivo) {
-
-		Atraccion[] atracciones = null;
-
-		FileReader fr = null;
-		BufferedReader br = null;
-
-		try {
-			fr = new FileReader(new File(archivo));
-			br = new BufferedReader(fr);
-
-			int cantidad = Integer.parseInt(br.readLine());
-			atracciones = new Atraccion[cantidad];
-			int indice = 0;
-
-			String linea = br.readLine();
-
-			while (linea != null) {
-				String[] datosAtraccion = linea.split(";");
-				String nombre = datosAtraccion[0];
-				int costo = Integer.parseInt(datosAtraccion[1]);
-				double tiempo = Double.parseDouble(datosAtraccion[2]);
-				int cupo = Integer.parseInt(datosAtraccion[3]);
-				String t = datosAtraccion[4].trim().toUpperCase();
-				Tipo tipo = Tipo.valueOf(Tipo.class, t);
-				atracciones[indice++] = new Atraccion(nombre, costo, tiempo, cupo, tipo);
-				linea = br.readLine();
-			}
-			return atracciones;
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (fr != null) {
-					fr.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-
-			}
-		}
-		return atracciones;
+		this.usuarios = CargarUsuarios.obtener(archivo);
 	}
 
 	public Promocion[] obtenerPromosDesdeArchivo(String archivo) {
