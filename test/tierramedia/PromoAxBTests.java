@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PromoAxBTests {
-
+/*
 	Promocion promo;
 	//String nombre, double costoDeVisita, int tiempoDeVisita, int cupoDePersonas, Tipo tipo
 	Atraccion atraccion1 = new Atraccion("Minas Tirith", 5, 2, 25, Tipo.PAISAJE);
@@ -26,5 +26,5 @@ public class PromoAxBTests {
 		double costoDePromoEsperado = 10;
 		assertEquals(costoDePromoEsperado, promo.getCosto(), 0);
 	}
-
+*/
 }

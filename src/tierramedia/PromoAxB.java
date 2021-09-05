@@ -2,19 +2,19 @@ package tierramedia;
 
 public class PromoAxB extends Promocion {
 
-	private Producto atraccionGratis;
+	private String atraccionGratis;
 
-	public PromoAxB(String nombre, Tipo tipo, Atraccion[] atracciones, Atraccion atraccionGratis) {
+	public PromoAxB(String nombre, Tipo tipo, String[] atracciones, String atraccionGratis) {
 		super(nombre, tipo, atracciones);
 		this.atraccionGratis = atraccionGratis;
 	}
 
-	public Producto getAtraccionGratis() {
+	public String getAtraccionGratis() {
 		return atraccionGratis;
 	}
 
-	@Override
+/*	@Override
 	public int getCosto() {
 		return super.getCosto() - this.atraccionGratis.getCosto();
-	}
+	}*/
 }

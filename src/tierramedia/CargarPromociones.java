@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CargarPromociones {
-	
+
 	public static List<Promocion> obtener(String archivo) {
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -18,6 +18,7 @@ public class CargarPromociones {
 			br = new BufferedReader(fr);
 			
 			String linea = br.readLine();
+			System.out.println("leo el arch");
 
 			while(linea != null) {
 				try {
@@ -26,14 +27,13 @@ public class CargarPromociones {
 					String infoDePromo = divisor [1];
 					String atracciones = divisor [2];
 					
+					System.out.println("dividi el coso en 3");
+					
 					if((claseDePromo).equals("PromoAxB")) {
 						String [] datosAxB = infoDePromo.split(",");
 						String nombre = datosAxB [0];
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosAxB[1].trim().toUpperCase());
 						String [] atraccionesDePromo = atracciones.split(";");
-						String a1 = atraccionesDePromo[0];
-						String a2 = atraccionesDePromo[1];
-						String a3 = atraccionesDePromo[2];
 						String atraccionGratis = atraccionesDePromo[3];
 						Promocion promo = new PromoAxB(nombre, tipo, atraccionesDePromo, atraccionGratis); 
 					
@@ -46,8 +46,6 @@ public class CargarPromociones {
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosAbsoluta[1].trim().toUpperCase());
 						int costo = Integer.parseInt(datosAbsoluta[2]);
 						String [] atraccionesDePromo = atracciones.split(";");
-						String a1 = atraccionesDePromo[0];
-						String a2 = atraccionesDePromo[1];
 						Promocion promo = new PromoAbsoluta(nombre, tipo, costo, atraccionesDePromo); 
 					
 						promos.add(promo);
@@ -59,59 +57,21 @@ public class CargarPromociones {
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosDescuento[1].trim().toUpperCase());
 						int porcentaje = Integer.parseInt(datosDescuento[2]);
 						String [] atraccionesDePromo = atracciones.split(";");
-						String a1 = atraccionesDePromo[0];
-						String a2 = atraccionesDePromo[1];
 						Promocion promo = new PromoDescuento(nombre, tipo, porcentaje, atraccionesDePromo); 
 					
 						promos.add(promo);
 						linea = br.readLine();
-					
-					
+						System.out.println("pasé por pdesc");
+					}
 				}catch (NumberFormatException e) {
 					System.err.println("Uno de los datos leídos no es un double o un entero");
 				}
 			}
-		}
-		return promos;
-		
-	} catch (IOException e) {
-		e.printStackTrace();
-	} finally {
-		try {
-			if (fr != null) {
-				fr.close();
-			}
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
-		return promos;
-	}
-	
-/*			int cantidad = Integer.parseInt(br.readLine());
-			promos = new Promocion[cantidad];
-			int indice = 0;
-
-			String claseDePromo = br.readLine();
-
-			if ((claseDePromo).equals("PromoAxB")) {
-
-				
-
-			}
-			if ((claseDePromo).equals("PromoAbsoluta")) {
-
-				
-			}
-			
-			if ((claseDePromo).equals("PromoDescuento")) {
-				
-				
-			}
-
 			return promos;
-
+			
 		} catch (IOException e) {
 			e.printStackTrace();
+		
 		} finally {
 			try {
 				if (fr != null) {
@@ -119,10 +79,8 @@ public class CargarPromociones {
 				}
 			} catch (Exception e2) {
 				e2.printStackTrace();
+				}
 			}
-		}
-
 		return promos;
-	}*/
+	}
 }
-	

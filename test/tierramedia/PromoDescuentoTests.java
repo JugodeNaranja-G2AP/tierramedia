@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PromoDescuentoTests {
-
+/*
 	Promocion promo;
 	//String nombre, double costoDeVisita, int tiempoDeVisita, int cupoDePersonas, Tipo tipo
 	Atraccion atraccion1 = new Atraccion("Bosque Negro", 25, 3, 4, Tipo.AVENTURA);
@@ -30,5 +30,5 @@ public class PromoDescuentoTests {
 		double tiempoTotalEsperado = 7.00;
 		assertEquals(tiempoTotalEsperado, promo.getTiempo(), 0);
 	}
-
+*/
 }

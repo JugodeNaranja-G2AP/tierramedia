@@ -1,11 +1,6 @@
 package tierramedia;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TierraMedia {
@@ -13,7 +8,7 @@ public class TierraMedia {
 	protected List<Usuario> usuarios;
 	private List<Atraccion> atracciones;
 	@SuppressWarnings("unused")
-	private Promocion[] promos;
+	private List<Promocion> promos;
 
 	public TierraMedia() {
 	}
@@ -23,7 +18,7 @@ public class TierraMedia {
 	}
 
 	public void agregarTodasPromociones(String archivoPromos) {
-		this.promos = obtenerPromosDesdeArchivo(archivoPromos);
+		this.promos = CargarPromociones.obtener(archivoPromos);
 	}
 
 	public Atraccion agregarAtraccionPorNombre(String nombre) {
@@ -39,55 +34,6 @@ public class TierraMedia {
 		this.usuarios = CargarUsuarios.obtener(archivo);
 	}
 
-	public Promocion[] obtenerPromosDesdeArchivo(String archivo) {
-
-		FileReader fr = null;
-		BufferedReader br = null;
-
-		Promocion[] promos = null;
-
-		try {
-			fr = new FileReader(new File(archivo));
-			br = new BufferedReader(fr);
-
-			int cantidad = Integer.parseInt(br.readLine());
-			promos = new Promocion[cantidad];
-			int indice = 0;
-
-			String claseDePromo = br.readLine();
-
-			if ((claseDePromo).equals("PromoAxB")) {
-
-				
-
-			}
-			if ((claseDePromo).equals("PromoAbsoluta")) {
-
-				
-			}
-			
-			if ((claseDePromo).equals("PromoDescuento")) {
-				
-				
-			}
-
-			return promos;
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (fr != null) {
-					fr.close();
-				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-
-		return promos;
-	}
-
 	public void escibirItinerarioDeUsuario() throws IOException {
 		// TODO: Finalizado el procesamiento, se obtendrá un archivo de salida para cada
 		// usuario,
@@ -100,7 +46,8 @@ public class TierraMedia {
 
 		 System.out.println(CargarUsuarios.obtener("entrada/usuarios.csv"));
 		 System.out.println(CargarAtracciones.obtener("entrada/atracciones.csv"));
-		/* Usuarios y atracciones.
+		 //System.out.println(CargarPromociones.obtener("entrada/promos.txt"));
+		 /* Usuarios y atracciones.
 		System.out.println(Arrays.toString(atracciones));
 		System.out.println(usuarios);
 		*/

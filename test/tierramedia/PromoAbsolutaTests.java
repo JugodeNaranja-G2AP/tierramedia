@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class PromoAbsolutaTests {
 	
-	Promocion promo;
+/*	Promocion promo;
 	//String nombre, int costoDeVisita, double tiempoDeVisita, int cupoDePersonas, Tipo tipo
 	Atraccion atraccion1 = new Atraccion("Lothlórien", 35, 1, 30, Tipo.DEGUSTACION);
 	Atraccion atraccion2 = new Atraccion("La Comarca", 3, 6.5, 150, Tipo.DEGUSTACION);
@@ -25,5 +25,5 @@ public class PromoAbsolutaTests {
 		assertEquals(costoEsperado, promo.getCosto(), 0);
 	}
 
-
+*/
 }
