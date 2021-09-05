@@ -5,25 +5,26 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class TierraMedia {
 
-	@SuppressWarnings("unused")
-	private List<Usuario> usuarios;
+	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	private Atraccion[] atracciones;
+	private List<Promocion> promos = new ArrayList<Promocion>();
+	private List<Producto> productos = new ArrayList<Producto>();
 	@SuppressWarnings("unused")
-	private Promocion[] promos;
+	private OrdenadorDeProducto ordenadorDeProductos;
 
 	public TierraMedia() {
 	}
 
-	public void agregarTodasAtracciones(String archivoAtracciones) {
+	public void agregarAtraccionesDesdeArchivo(String archivoAtracciones) {
 		this.atracciones = obtenerAtraccionesDesdeArchivo(archivoAtracciones);
 	}
 
-	public void agregarTodasPromociones(String archivoPromos) {
+	public void agregarPromocionesDesdeArchivo(String archivoPromos) {
 		this.promos = obtenerPromosDesdeArchivo(archivoPromos);
 	}
 
@@ -36,8 +37,32 @@ public class TierraMedia {
 		return null;
 	}
 
+	public void agregarAtraccionesaListaProductos() {
+		for (Atraccion atraccion : atracciones) {
+			productos.add(atraccion);
+		}
+	}
+
+	public void agregarPromosaListaProductos() {
+		for (Promocion promo : this.promos) {
+			productos.add(promo);
+		}
+	}
+
+	public List<Producto> obtenerListaProductos() {
+		return this.productos;
+	}
+
+	public List<Usuario> obtenerListaUsuarios() {
+		return this.usuarios;
+	}
+
 	public void agregarUsuariosDesdeArchivo(String archivo) {
 		this.usuarios = obtenerUsuariosDesdeArchivo(archivo);
+	}
+
+	public void OrdenarProductosDeListaSegunUsuario(Usuario u) {
+		Collections.sort(this.productos, new OrdenadorDeProducto(u.getTipoDeAtraccionPreferida()));
 	}
 
 	public List<Usuario> obtenerUsuariosDesdeArchivo(String archivo) {
@@ -82,15 +107,11 @@ public class TierraMedia {
 				e2.printStackTrace();
 			}
 		}
-
 		return usuarios;
-
 	}
 
 	public Atraccion[] obtenerAtraccionesDesdeArchivo(String archivo) {
-
 		Atraccion[] atracciones = null;
-
 		FileReader fr = null;
 		BufferedReader br = null;
 
@@ -132,36 +153,32 @@ public class TierraMedia {
 		return atracciones;
 	}
 
-	public Promocion[] obtenerPromosDesdeArchivo(String archivo) {
-
+	public List<Promocion> obtenerPromosDesdeArchivo(String archivo) {
 		FileReader fr = null;
 		BufferedReader br = null;
-
-		Promocion[] promos = null;
+		List<Promocion> promos = new ArrayList<Promocion>();
 
 		try {
 			fr = new FileReader(new File(archivo));
 			br = new BufferedReader(fr);
 
-			int cantidad = Integer.parseInt(br.readLine());
-			promos = new Promocion[cantidad];
-			int indice = 0;
+			String linea2 = br.readLine();
 
-			String claseDePromo = br.readLine();
+			while (linea2 != null) {
+				String[] datosPromos = linea2.split(",");
+				Integer costo = Integer.parseInt(datosPromos[1]);
+				String nombre = datosPromos[2];
+				Tipo tipo = Tipo.valueOf(datosPromos[3].toUpperCase());
+				String[] atraccionesString = datosPromos[4].split(";");
+				int indiceBase = atraccionesString.length;
+				Atraccion[] atracciones = new Atraccion[indiceBase];
+				for (int i = 0; i < indiceBase; i++) {
+					atracciones[i] = agregarAtraccionPorNombre(atraccionesString[i]);
+				}
 
-			if ((claseDePromo).equals("PromoAxB")) {
-
-				
-
-			}
-			if ((claseDePromo).equals("PromoAbsoluta")) {
-
-				
-			}
-			
-			if ((claseDePromo).equals("PromoDescuento")) {
-				
-				
+				Promocion promo = new PromoAbsoluta(nombre, tipo, atracciones, costo);
+				promos.add(promo);
+				linea2 = br.readLine();
 			}
 
 			return promos;
@@ -178,7 +195,6 @@ public class TierraMedia {
 
 			}
 		}
-
 		return promos;
 	}
 
@@ -193,34 +209,22 @@ public class TierraMedia {
 	public static void main(String[] args) {
 
 		TierraMedia tm = new TierraMedia();
-		List<Usuario> usuarios = tm.obtenerUsuariosDesdeArchivo("entrada/usuarios.csv");
-		Atraccion[] atracciones = tm.obtenerAtraccionesDesdeArchivo("entrada/atracciones.csv");
-		// Usuarios y atracciones.
-		System.out.println(Arrays.toString(atracciones));
+		// Obtiene usuarios, atracciones y promos desde archivo y los agrega a tm.
+		tm.agregarUsuariosDesdeArchivo("entrada/usuarios.csv");
+		tm.agregarAtraccionesDesdeArchivo("entrada/atracciones.csv");
+		tm.agregarPromocionesDesdeArchivo("entrada/PromoAbsoluta.in");
+		tm.agregarPromosaListaProductos();
+		tm.agregarAtraccionesaListaProductos();
+		List<Producto> productos = tm.obtenerListaProductos();
+		List<Usuario> usuarios = tm.obtenerListaUsuarios();
+		// Ordena las promos y atracciones según tipo de atracción
+		// favorita de usuario y otros dif. criterios
+		tm.OrdenarProductosDeListaSegunUsuario(usuarios.get(2));
+
+		// Usuarios - Usuario Arwen y su lista de productos a mostrar .
 		System.out.println(usuarios);
+		System.out.println(productos);
+
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
