@@ -4,7 +4,7 @@ public class PromoDescuento extends Promocion {
 	
 	private int porcentajeDescuento;
 
-	public PromoDescuento(String nombre, Tipo tipo, Atraccion[] atracciones, int porcentajeDescuento) {
+	public PromoDescuento(String nombre, Tipo tipo, int porcentajeDescuento, Atraccion[] atracciones) {
 		super(nombre, tipo, atracciones);
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
