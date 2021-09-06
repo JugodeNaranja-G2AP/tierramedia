@@ -4,7 +4,7 @@ public class PromoAbsoluta extends Promocion {
 
 	private int costoDePromo;
 
-	public PromoAbsoluta(String nombre, Tipo tipo,int costoAbsolutoDePromo, String[] atracciones) {
+	public PromoAbsoluta(String nombre, Tipo tipo,int costoAbsolutoDePromo, Atraccion[] atracciones) {
 		super(nombre, tipo, atracciones);
 		this.costoDePromo = costoAbsolutoDePromo;
 	}

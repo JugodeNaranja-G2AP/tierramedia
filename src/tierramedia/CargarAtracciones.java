@@ -28,7 +28,6 @@ public class CargarAtracciones {
 					int cupo = Integer.parseInt(datosAtraccion[3]);
 					Tipo tipo = Tipo.valueOf(Tipo.class, datosAtraccion[4].trim().toUpperCase());
 					Atraccion atraccion = new Atraccion(nombre, costo, tiempo, cupo, tipo);
-					linea = br.readLine();
 					
 					atracciones.add(atraccion);
 					linea = br.readLine();

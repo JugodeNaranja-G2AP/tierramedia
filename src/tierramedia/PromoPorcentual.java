@@ -4,12 +4,11 @@ public class PromoPorcentual extends Promocion {
 	
 	private int porcentajeDescuento;
 
-	public PromoPorcentual(String nombre, Tipo tipo, int porcentajeDescuento, String[] atracciones) {
+	public PromoPorcentual(String nombre, Tipo tipo, int porcentajeDescuento, Atraccion[] atracciones) {
 		super(nombre, tipo, atracciones);
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
 
-	@SuppressWarnings("unused")
 	private int realizarDescuento(int costo) {
 		int descuento = (int) Math.floor((costo * this.porcentajeDescuento) / 100);
 		return descuento;

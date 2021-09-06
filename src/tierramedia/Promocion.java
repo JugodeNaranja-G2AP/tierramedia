@@ -5,12 +5,12 @@ import java.util.Arrays;
 public abstract class Promocion implements Producto {
 
 	private String nombre;
-	private String[] atracciones;  
+	private Atraccion[] atracciones;  
 	private double tiempoTotal;
 	private int costoDePack;
 	private Tipo tipo;
 
-	public Promocion(String nombre, Tipo tipo, String[] atracciones) {
+	public Promocion(String nombre, Tipo tipo, Atraccion[] atracciones) {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.atracciones = atracciones;
@@ -28,40 +28,41 @@ public abstract class Promocion implements Producto {
 	@Override
 	public Double getTiempo() {
 		tiempoTotal = 0;
-		/*for (Atraccion cadaAtraccion : atracciones) {
+		for (Atraccion cadaAtraccion : atracciones) {
 			if (cadaAtraccion == null)
 				break;
 			tiempoTotal += cadaAtraccion.getTiempo();
-		}*/
+		}
 		return tiempoTotal;
 	}
 
 	@Override
 	public int getCosto() { 
 		costoDePack = 0;
-		/*for (Atraccion cadaAtraccion : atracciones) {
+		for (Atraccion cadaAtraccion : atracciones) {
+			System.out.println("pasé por acá");
 			if (cadaAtraccion == null)
 				break;
 			costoDePack += cadaAtraccion.getCosto();
-		}*/
+		}
 		return costoDePack;
 	}
 	
 	public boolean hayCupo() {
 		boolean hayCupo = true;
-		/*for (Atraccion cadaAtraccion : atracciones) {
+		for (Atraccion cadaAtraccion : atracciones) {
 			if (!(cadaAtraccion.getCupoDePersonas() > 0))  {
 				hayCupo = false;
 				break;
 			}
-		}*/
+		}
 		return hayCupo;
 	}
 	
 	public void descontarCupo() {
-		/*for (Atraccion cadaAtraccion : atracciones) {
+		for (Atraccion cadaAtraccion : atracciones) {
 			cadaAtraccion.descontarCupo();
-		}*/
+		}
 	}
 
 	@Override
@@ -72,8 +73,8 @@ public abstract class Promocion implements Producto {
 
 	@Override
 	public String toString() {
-		return "Promocion: \n Nombre de la Promo: " + nombre + "\n Atracciones que incluye:\n " + Arrays.toString(atracciones) + "\n Tiempo Total = "
-				+ tiempoTotal + " horas \n Costo del pack = " + costoDePack + " monedas de oro\n Tipo = " + tipo + "\n\n";
+		return "PROMOCIÓN \n Nombre de la Promo: " + nombre + "\n Atracciones que incluye:\n " + Arrays.toString(atracciones) + "\n Tiempo Total = "
+				+ getTiempo() + " horas \n Costo del pack = " + getCosto() + " monedas de oro\n Tipo = " + tipo + "\n\n";
 	}
 	
 }

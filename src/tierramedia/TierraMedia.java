@@ -17,8 +17,8 @@ public class TierraMedia {
 		this.atracciones = CargarAtracciones.obtener(archivoAtracciones);
 	}
 
-	public void agregarTodasPromociones(String archivoPromos) {
-		this.promos = CargarPromociones.obtener(archivoPromos);
+	public void agregarTodasPromociones(String archivoPromos, String archivoAtracciones) {
+		this.promos = CargarPromociones.obtener(archivoPromos, archivoAtracciones);
 	}
 
 	public Atraccion agregarAtraccionPorNombre(String nombre) {
@@ -44,9 +44,9 @@ public class TierraMedia {
 
 	public static void main(String[] args) {
 
-		 System.out.println(CargarUsuarios.obtener("entrada/usuarios.csv"));
-		 System.out.println(CargarAtracciones.obtener("entrada/atracciones.csv"));
-		 System.out.println(CargarPromociones.obtener("entrada/promos.txt"));
+		//System.out.println(CargarUsuarios.obtener("entrada/usuarios.csv"));
+		//System.out.println(CargarAtracciones.obtener("entrada/atracciones.csv"));
+		System.out.println(CargarPromociones.obtener("entrada/promos.txt", "entrada/atracciones.csv"));
 		 /* Usuarios y atracciones.
 		System.out.println(Arrays.toString(atracciones));
 		System.out.println(usuarios);
