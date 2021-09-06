@@ -54,7 +54,7 @@ public class CargarPromociones {
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosDescuento[1].trim().toUpperCase());
 						int porcentaje = Integer.parseInt(datosDescuento[2]);
 						String [] atraccionesDePromo = atracciones.split(";");
-						Promocion promo = new PromoDescuento(nombre, tipo, porcentaje, atraccionesDePromo); 
+						Promocion promo = new PromoPorcentual(nombre, tipo, porcentaje, atraccionesDePromo); 
 					
 						promos.add(promo);
 						linea = br.readLine();
