@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PromoDescuentoTests {
+public class PromoPorcentualTests {
 
 	Promocion promo;
 	//String nombre, double costoDeVisita, int tiempoDeVisita, int cupoDePersonas, Tipo tipo
@@ -16,7 +16,7 @@ public class PromoDescuentoTests {
 	@Before
 	public void setUp() {
 		//String nombre, int cantidadAtracciones, Tipo tipo, Producto[] atracciones, int porcentajeDescuento
-		promo = new PromoDescuento("La Gran Aventura", Tipo.AVENTURA, atracciones , 20);
+		promo = new PromoPorcentual("La Gran Aventura", Tipo.AVENTURA, atracciones , 20);
 	}
 
 	@Test

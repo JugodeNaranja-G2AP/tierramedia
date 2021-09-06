@@ -5,7 +5,7 @@ import java.util.Arrays;
 public abstract class Promocion implements Producto {
 
 	private String nombre;
-	private Atraccion[] atracciones;  
+	private Atraccion[] atracciones;
 	private double tiempoTotal;
 	private int costoDePack;
 	private Tipo tipo;
@@ -14,8 +14,10 @@ public abstract class Promocion implements Producto {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.atracciones = atracciones;
+		this.costoDePack = getCosto();
+		this.tiempoTotal = getTiempo();
 	}
-	
+
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -26,38 +28,35 @@ public abstract class Promocion implements Producto {
 	}
 
 	@Override
-	public Double getTiempo() {
+	public double getTiempo() {
 		tiempoTotal = 0;
 		for (Atraccion cadaAtraccion : atracciones) {
-			if (cadaAtraccion == null)
-				break;
 			tiempoTotal += cadaAtraccion.getTiempo();
 		}
 		return tiempoTotal;
 	}
 
 	@Override
-	public int getCosto() { 
+	public int getCosto() {
 		costoDePack = 0;
 		for (Atraccion cadaAtraccion : atracciones) {
-			if (cadaAtraccion == null)
-				break;
 			costoDePack += cadaAtraccion.getCosto();
 		}
 		return costoDePack;
 	}
-	
+
 	public boolean hayCupo() {
 		boolean hayCupo = true;
 		for (Atraccion cadaAtraccion : atracciones) {
-			if (!(cadaAtraccion.getCupoDePersonas() > 0))  {
+			if (!(cadaAtraccion.getCupoDePersonas() > 0)) {
 				hayCupo = false;
 				break;
 			}
 		}
 		return hayCupo;
 	}
-	
+
+	@Override
 	public void descontarCupo() {
 		for (Atraccion cadaAtraccion : atracciones) {
 			cadaAtraccion.descontarCupo();
@@ -65,15 +64,20 @@ public abstract class Promocion implements Producto {
 	}
 
 	@Override
-	public Boolean puedeSerOfertadoA(Usuario u) {
-		return this.tipo.equals(u.getTipoDeAtraccionPreferida()) && 
-				hayCupo() && u.getPresupuesto() >= this.getCosto() && u.getTiempoDisponible() >= this.getTiempo();
+	public boolean esPromocion() {
+		return true;
+	}
+
+	@Override
+	public boolean puedeSerOfertadoA(Usuario u) {
+		return hayCupo() && u.getPresupuesto() >= this.getCosto() && u.getTiempoDisponible() >= this.getTiempo();
 	}
 
 	@Override
 	public String toString() {
-		return "Promocion: \n\n Nombre de la Promo: " + nombre + ".\n\n Atracciones que incluye: \n\n " + Arrays.toString(atracciones) + ", Tiempo Total="
-				+ tiempoTotal + "horas , costo del pack=" + costoDePack + " Monedas de oro, Tipo = " + tipo + " ] \n\n";
+		return "Promocion: \n\n Nombre de la Promo: " + nombre + ".\n\n Atracciones que incluye: \n\n "
+				+ Arrays.toString(atracciones) + ", Tiempo Total = " + getTiempo() + " horas, costo del pack = "
+				+ getCosto() + " Monedas de oro, Tipo = " + tipo + " ] \n\n";
 	}
-	
+
 }

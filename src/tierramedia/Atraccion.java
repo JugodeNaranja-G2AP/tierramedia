@@ -26,7 +26,7 @@ public class Atraccion  implements Producto {
 	}
 
 	@Override
-	public Double getTiempo() {
+	public double getTiempo() {
 		return tiempoDeVisita;
 	}
 
@@ -43,14 +43,19 @@ public class Atraccion  implements Producto {
 		return this.cupoDePersonas > 0;
 	}
 
+	@Override
 	public void descontarCupo() {
 		this.cupoDePersonas--;
 	}
+	
+	@Override
+	public boolean esPromocion() {
+		return false;
+	}
 
 	@Override
-	public Boolean puedeSerOfertadoA(Usuario u) {
-		return this.tipo.equals(u.getTipoDeAtraccionPreferida()) && this.hayCupo() &&
-				 u.getPresupuesto() >= costoDeVisita && u.getTiempoDisponible() >= tiempoDeVisita;
+	public boolean puedeSerOfertadoA(Usuario u) {
+		return  this.hayCupo() && u.getPresupuesto() >= costoDeVisita && u.getTiempoDisponible() >= tiempoDeVisita;
 	}
 
 	@Override

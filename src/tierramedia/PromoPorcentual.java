@@ -1,10 +1,10 @@
 package tierramedia;
 
-public class PromoDescuento extends Promocion {
+public class PromoPorcentual extends Promocion {
 	
 	private int porcentajeDescuento;
 
-	public PromoDescuento(String nombre, Tipo tipo, Atraccion[] atracciones, int porcentajeDescuento) {
+	public PromoPorcentual(String nombre, Tipo tipo, Atraccion[] atracciones, int porcentajeDescuento) {
 		super(nombre, tipo, atracciones);
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
