@@ -12,7 +12,6 @@ public class CargarPromociones {
 		FileReader fr = null;
 		BufferedReader br = null;
 		List<Promocion> promos = new ArrayList<Promocion>();
-		//Atraccion[] atracciones;
 
 		try {
 			fr = new FileReader(archivoPromociones);
@@ -34,7 +33,7 @@ public class CargarPromociones {
 						String [] atraccionesDePromo = atraccionesString.split(";");
 						
 						int indiceBase = atraccionesDePromo.length;
-						Atraccion[] atracciones = new Atraccion[indiceBase-1]; //ver de emprolijar
+						Atraccion[] atracciones = new Atraccion[indiceBase-1]; //ver de "emprolijar"
 						for (int i = 0; i < indiceBase - 1; i++) {
 							atracciones[i] = agregarAtraccionPorNombre(atraccionesDePromo[i], archivoAtracciones);
 						}
