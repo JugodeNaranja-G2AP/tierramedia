@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
-
 public class CargarPromociones {
 
 	public static List<Promocion> obtener(String archivo) {
@@ -22,6 +20,7 @@ public class CargarPromociones {
 			String linea = br.readLine();
 
 			while(linea != null) {
+				try {
 					String [] divisor = linea.split("/");
 					String claseDePromo = divisor [0];
 					String infoDePromo = divisor [1];
@@ -60,7 +59,11 @@ public class CargarPromociones {
 						promos.add(promo);
 						linea = br.readLine();
 					}
-				} return promos;
+				}catch (NumberFormatException e) {
+					System.err.println("Uno de los datos leídos no es un double o un entero");
+				}
+			}
+			return promos;
 			
 			
 		} catch (IOException e) {
