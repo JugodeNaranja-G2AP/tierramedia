@@ -72,8 +72,8 @@ public abstract class Promocion implements Producto {
 
 	@Override
 	public String toString() {
-		return "Promocion: \n\n Nombre de la Promo: " + nombre + ".\n\n Atracciones que incluye: \n\n " + Arrays.toString(atracciones) + ", Tiempo Total="
-				+ tiempoTotal + "horas , costo del pack=" + costoDePack + " Monedas de oro, Tipo = " + tipo + " ] \n\n";
+		return "Promocion: \n Nombre de la Promo: " + nombre + ".\n Atracciones que incluye: \n " + Arrays.toString(atracciones) + "\n Tiempo Total="
+				+ tiempoTotal + "horas. \n Costo del pack=" + costoDePack + "monedas de oro. \n Tipo = " + tipo + " ] \n\n";
 	}
 	
 }

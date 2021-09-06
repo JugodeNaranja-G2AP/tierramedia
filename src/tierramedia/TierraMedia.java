@@ -46,7 +46,7 @@ public class TierraMedia {
 
 		 System.out.println(CargarUsuarios.obtener("entrada/usuarios.csv"));
 		 System.out.println(CargarAtracciones.obtener("entrada/atracciones.csv"));
-		 //System.out.println(CargarPromociones.obtener("entrada/promos.txt"));
+		 System.out.println(CargarPromociones.obtener("entrada/promos.txt"));
 		 /* Usuarios y atracciones.
 		System.out.println(Arrays.toString(atracciones));
 		System.out.println(usuarios);

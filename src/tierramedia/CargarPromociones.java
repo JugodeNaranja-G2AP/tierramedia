@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
+
 public class CargarPromociones {
 
 	public static List<Promocion> obtener(String archivo) {
@@ -18,29 +20,25 @@ public class CargarPromociones {
 			br = new BufferedReader(fr);
 			
 			String linea = br.readLine();
-			System.out.println("leo el arch");
 
 			while(linea != null) {
-				try {
-					String [] divisor = linea.split("|");
+					String [] divisor = linea.split("/");
 					String claseDePromo = divisor [0];
 					String infoDePromo = divisor [1];
 					String atracciones = divisor [2];
 					
-					System.out.println("dividi el coso en 3");
-					
-					if((claseDePromo).equals("PromoAxB")) {
+					if(claseDePromo.equals("PromoAxB")) {
 						String [] datosAxB = infoDePromo.split(",");
 						String nombre = datosAxB [0];
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosAxB[1].trim().toUpperCase());
 						String [] atraccionesDePromo = atracciones.split(";");
 						String atraccionGratis = atraccionesDePromo[3];
 						Promocion promo = new PromoAxB(nombre, tipo, atraccionesDePromo, atraccionGratis); 
-					
+						
 						promos.add(promo);
 						linea = br.readLine();
 						
-					} if((claseDePromo).equals("PromoAbsoluta")) {
+					} else if(claseDePromo.equals("PromoAbsoluta")) {
 						String [] datosAbsoluta = infoDePromo.split(",");
 						String nombre = datosAbsoluta [0];
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosAbsoluta[1].trim().toUpperCase());
@@ -51,7 +49,7 @@ public class CargarPromociones {
 						promos.add(promo);
 						linea = br.readLine();
 						
-					} if((claseDePromo).equals("PromoDescuento")) {
+					} else {
 						String [] datosDescuento = infoDePromo.split(",");
 						String nombre = datosDescuento [0];
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosDescuento[1].trim().toUpperCase());
@@ -61,13 +59,9 @@ public class CargarPromociones {
 					
 						promos.add(promo);
 						linea = br.readLine();
-						System.out.println("pasé por pdesc");
 					}
-				}catch (NumberFormatException e) {
-					System.err.println("Uno de los datos leídos no es un double o un entero");
-				}
-			}
-			return promos;
+				} return promos;
+			
 			
 		} catch (IOException e) {
 			e.printStackTrace();

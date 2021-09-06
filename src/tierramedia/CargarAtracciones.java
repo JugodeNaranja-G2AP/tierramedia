@@ -18,8 +18,6 @@ public class CargarAtracciones {
 			br = new BufferedReader(fr);
 
 			String linea = br.readLine();
-			System.out.println("dividi el coso en 3");
-
 
 			while (linea != null) {
 				try {
