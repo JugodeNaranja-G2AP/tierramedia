@@ -1,10 +1,12 @@
 package tierramedia;
 
+import java.util.List;
+
 public class PromoAbsoluta extends Promocion {
 
 	private int costoDePromo;
 
-	public PromoAbsoluta(String nombre, Tipo tipo,int costoAbsolutoDePromo, Atraccion[] atracciones) {
+	public PromoAbsoluta(String nombre, Tipo tipo,int costoAbsolutoDePromo, List<Atraccion> atracciones) {
 		super(nombre, tipo, atracciones);
 		this.costoDePromo = costoAbsolutoDePromo;
 	}
@@ -14,15 +16,5 @@ public class PromoAbsoluta extends Promocion {
 		return this.costoDePromo;
 	}
 
-	@Override
-	public Double getTiempo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Boolean puedeSerOfertadoA(Usuario u) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

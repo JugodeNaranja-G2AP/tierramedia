@@ -1,5 +1,7 @@
 package tierramedia;
 
+import java.util.List;
+
 public interface Producto {
 	Tipo getTipo();
 	int getCosto();
@@ -7,4 +9,5 @@ public interface Producto {
 	boolean puedeSerOfertadoA(Usuario u);
 	boolean esPromocion();
 	void descontarCupo();
+	List<Atraccion> obtenerAtracciones();
 }

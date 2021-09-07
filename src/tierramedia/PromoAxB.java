@@ -1,10 +1,12 @@
 package tierramedia;
 
+import java.util.List;
+
 public class PromoAxB extends Promocion {
 
 	private Atraccion atraccionGratis;
 
-	public PromoAxB(String nombre, Tipo tipo, Atraccion[] atracciones, Atraccion atraccionGratis) {
+	public PromoAxB(String nombre, Tipo tipo, List<Atraccion> atracciones, Atraccion atraccionGratis) {
 		super(nombre, tipo, atracciones);
 		this.atraccionGratis = atraccionGratis;
 	}
