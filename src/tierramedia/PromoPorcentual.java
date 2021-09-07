@@ -1,10 +1,12 @@
 package tierramedia;
 
+import java.util.List;
+
 public class PromoPorcentual extends Promocion {
 	
 	private int porcentajeDescuento;
 
-	public PromoPorcentual(String nombre, Tipo tipo, int porcentajeDescuento, Atraccion[] atracciones) {
+	public PromoPorcentual(String nombre, Tipo tipo, int porcentajeDescuento, List<Atraccion> atracciones) {
 		super(nombre, tipo, atracciones);
 		this.porcentajeDescuento = porcentajeDescuento;
 	}

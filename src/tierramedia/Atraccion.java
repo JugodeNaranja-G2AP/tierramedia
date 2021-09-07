@@ -1,5 +1,7 @@
 package tierramedia;
 
+import java.util.List;
+
 public class Atraccion  implements Producto {
 	
 	private String nombre;
@@ -52,10 +54,16 @@ public class Atraccion  implements Producto {
 	public boolean esPromocion() {
 		return false;
 	}
+	
+	@Override
+    public List<Atraccion> obtenerAtracciones() {
+        return List.of(this);
+    }
 
 	@Override
 	public boolean puedeSerOfertadoA(Usuario u) {
-		return  this.hayCupo() && u.getPresupuesto() >= costoDeVisita && u.getTiempoDisponible() >= tiempoDeVisita;
+		return  this.hayCupo() && u.getPresupuesto() >= costoDeVisita && 
+				u.getTiempoDisponible() >= tiempoDeVisita;
 	}
 
 	@Override

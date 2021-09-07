@@ -25,27 +25,28 @@ public class CargarPromociones {
 					String claseDePromo = divisor [0];
 					String infoDePromo = divisor [1];
 					String atraccionesString = divisor [2];
-					
+					/*
 					if(claseDePromo.equals("PromoAxB")) {
 						String [] datosAxB = infoDePromo.split(",");
 						String nombre = datosAxB [0];
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosAxB[1].trim().toUpperCase());
+						Atraccion atraccionGratis = agregarAtraccionPorNombre(datosAxB[2], archivoAtracciones);
 						String [] atraccionesDePromo = atraccionesString.split(";");
 						
 						int indiceBase = atraccionesDePromo.length;
-						Atraccion[] atracciones = new Atraccion[indiceBase-1]; //ver de "emprolijar"
-						for (int i = 0; i < indiceBase - 1; i++) {
-							atracciones[i] = agregarAtraccionPorNombre(atraccionesDePromo[i], archivoAtracciones);
+						List<Atraccion> atracciones = new ArrayList<Atraccion>();
+						for (int i = 0; i < indiceBase; i++) {
+							atracciones.add(agregarAtraccionPorNombre(atraccionesDePromo[i], archivoAtracciones));
 						}
+										
 						
-						
-						Atraccion atraccionGratis = atracciones[indiceBase-2];
 						Promocion promo = new PromoAxB(nombre, tipo, atracciones, atraccionGratis); 
 
 						promos.add(promo);
 						linea = br.readLine();
 						
-					} else if(claseDePromo.equals("PromoAbsoluta")) {
+					}*/
+					if(claseDePromo.equals("PromoAbsoluta")) {
 						String [] datosAbsoluta = infoDePromo.split(",");
 						String nombre = datosAbsoluta [0];
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosAbsoluta[1].trim().toUpperCase());
@@ -53,9 +54,9 @@ public class CargarPromociones {
 						String [] atraccionesDePromo = atraccionesString.split(";");
 						
 						int indiceBase = atraccionesDePromo.length;
-						Atraccion[] atracciones = new Atraccion[indiceBase];
+						List<Atraccion> atracciones = new ArrayList<Atraccion>();
 						for (int i = 0; i < indiceBase; i++) {
-							atracciones[i] = agregarAtraccionPorNombre(atraccionesDePromo[i], archivoAtracciones);
+							atracciones.add(agregarAtraccionPorNombre(atraccionesDePromo[i], archivoAtracciones));
 						}
 						
 						Promocion promo = new PromoAbsoluta(nombre, tipo, costo, atracciones); 
@@ -71,9 +72,9 @@ public class CargarPromociones {
 						String [] atraccionesDePromo = atraccionesString.split(";");
 						
 						int indiceBase = atraccionesDePromo.length;
-						Atraccion[] atracciones = new Atraccion[indiceBase];
+						List<Atraccion> atracciones = new ArrayList<Atraccion>();
 						for (int i = 0; i < indiceBase; i++) {
-							atracciones[i] = agregarAtraccionPorNombre(atraccionesDePromo[i], archivoAtracciones);
+							atracciones.add(agregarAtraccionPorNombre(atraccionesDePromo[i], archivoAtracciones));
 						}
 						
 						Promocion promo = new PromoPorcentual(nombre, tipo, porcentaje, atracciones); 

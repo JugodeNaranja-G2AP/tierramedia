@@ -1,16 +1,17 @@
 package tierramedia;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Promocion implements Producto {
 
 	private String nombre;
-	private Atraccion[] atracciones;
+	private List<Atraccion> atracciones = new ArrayList<Atraccion>();
 	private double tiempoTotal;
 	private int costoDePack;
 	private Tipo tipo;
 
-	public Promocion(String nombre, Tipo tipo, Atraccion[] atracciones) {
+	public Promocion(String nombre, Tipo tipo, List<Atraccion> atracciones) {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.atracciones = atracciones;
@@ -59,7 +60,9 @@ public abstract class Promocion implements Producto {
 	@Override
 	public void descontarCupo() {
 		for (Atraccion cadaAtraccion : atracciones) {
-			cadaAtraccion.descontarCupo();
+			if (cadaAtraccion.getCupoDePersonas() > 0) {
+				cadaAtraccion.descontarCupo();
+			}
 		}
 	}
 
@@ -69,20 +72,20 @@ public abstract class Promocion implements Producto {
 	}
 
 	@Override
+	public List<Atraccion> obtenerAtracciones() {
+		return atracciones;
+	}
+
+	@Override
 	public boolean puedeSerOfertadoA(Usuario u) {
 		return hayCupo() && u.getPresupuesto() >= this.getCosto() && u.getTiempoDisponible() >= this.getTiempo();
 	}
 
 	@Override
 	public String toString() {
-<<<<<<< HEAD
-		return "Promocion: \n\n Nombre de la Promo: " + nombre + ".\n\n Atracciones que incluye: \n\n "
-				+ Arrays.toString(atracciones) + ", Tiempo Total = " + getTiempo() + " horas, costo del pack = "
-				+ getCosto() + " Monedas de oro, Tipo = " + tipo + " ] \n\n";
-=======
-		return "PROMOCI�N \n Nombre de la Promo: " + nombre + "\n Atracciones que incluye:\n " + Arrays.toString(atracciones) + "\n Tiempo Total = "
-				+ getTiempo() + " horas \n Costo del pack = " + getCosto() + " monedas de oro\n Tipo = " + tipo + "\n\n";
->>>>>>> promoSync
+		return "PROMOCION \n Nombre de la Promo: " + nombre + "\n Atracciones que incluye:\n " + atracciones
+				+ "\n Tiempo Total = " + getTiempo() + " horas \n Costo del pack = " + getCosto()
+				+ " monedas de oro\n Tipo = " + tipo + "\n\n";
 	}
 
 }

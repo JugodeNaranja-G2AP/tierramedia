@@ -9,7 +9,7 @@ public class Usuario {
 	private int presupuesto;
 	private double tiempoDisponible;
 	private Tipo tipoAtraccionPreferida;
-	protected List<Producto> productosReservados; //cambi� el nombre de la variable, se llamaba "sugerenciasDiarias"
+	protected List<Producto> productosReservados; 
 
 	public Usuario(String nombre, int presupuesto, double tiempoDisponible, Tipo tipoDeAtraccionPreferida) {
 		this.nombre = nombre;
@@ -36,7 +36,7 @@ public class Usuario {
 	}
 	
 	public List<Producto> obtenerProductosComprados() {
-		return this.sugerenciasDiarias;
+		return this.productosReservados;
 	}
 	
 	public boolean comproElProducto(Producto producto) {
@@ -65,10 +65,17 @@ public class Usuario {
 	}
 
 	public void reservarProducto(Producto producto) {
+		List<Atraccion> atracciones = new ArrayList<>();
 		double tiempo = producto.getTiempo();
 		int costo = producto.getCosto();
-
 		productosReservados.add(producto);
+		producto.descontarCupo();
+		if(producto.esPromocion()) {
+			atracciones = producto.obtenerAtracciones();
+			for(Atraccion a: atracciones) {
+				productosReservados.add(a);
+			}
+		}
 		restarTiempoDisponible(tiempo);
 		restarPresupuesto(costo);
 
