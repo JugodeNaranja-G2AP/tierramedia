@@ -2,14 +2,14 @@ package tierramedia;
 
 public class PromoAxB extends Promocion {
 
-	private Producto atraccionGratis;
+	private Atraccion atraccionGratis;
 
 	public PromoAxB(String nombre, Tipo tipo, Atraccion[] atracciones, Atraccion atraccionGratis) {
 		super(nombre, tipo, atracciones);
 		this.atraccionGratis = atraccionGratis;
 	}
 
-	public Producto getAtraccionGratis() {
+	public Atraccion getAtraccionGratis() {
 		return atraccionGratis;
 	}
 

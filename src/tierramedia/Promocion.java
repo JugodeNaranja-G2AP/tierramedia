@@ -75,9 +75,14 @@ public abstract class Promocion implements Producto {
 
 	@Override
 	public String toString() {
+<<<<<<< HEAD
 		return "Promocion: \n\n Nombre de la Promo: " + nombre + ".\n\n Atracciones que incluye: \n\n "
 				+ Arrays.toString(atracciones) + ", Tiempo Total = " + getTiempo() + " horas, costo del pack = "
 				+ getCosto() + " Monedas de oro, Tipo = " + tipo + " ] \n\n";
+=======
+		return "PROMOCI�N \n Nombre de la Promo: " + nombre + "\n Atracciones que incluye:\n " + Arrays.toString(atracciones) + "\n Tiempo Total = "
+				+ getTiempo() + " horas \n Costo del pack = " + getCosto() + " monedas de oro\n Tipo = " + tipo + "\n\n";
+>>>>>>> promoSync
 	}
 
 }

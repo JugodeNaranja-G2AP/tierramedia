@@ -5,8 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+<<<<<<< HEAD:test/tierramedia/PromoPorcentualTests.java
 public class PromoPorcentualTests {
 
+=======
+public class PromoDescuentoTests {
+/*
+>>>>>>> promoSync:test/tierramedia/PromoDescuentoTests.java
 	Promocion promo;
 	//String nombre, double costoDeVisita, int tiempoDeVisita, int cupoDePersonas, Tipo tipo
 	Atraccion atraccion1 = new Atraccion("Bosque Negro", 25, 3, 4, Tipo.AVENTURA);
@@ -30,5 +35,5 @@ public class PromoPorcentualTests {
 		double tiempoTotalEsperado = 7.00;
 		assertEquals(tiempoTotalEsperado, promo.getTiempo(), 0);
 	}
-
+*/
 }
