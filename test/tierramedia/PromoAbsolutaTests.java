@@ -2,19 +2,25 @@ package tierramedia;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class PromoAbsolutaTests {
 	
-/*	Promocion promo;
+	Promocion promo;
 	//String nombre, int costoDeVisita, double tiempoDeVisita, int cupoDePersonas, Tipo tipo
-	Atraccion atraccion1 = new Atraccion("Lothlórien", 35, 1, 30, Tipo.DEGUSTACION);
+	Atraccion atraccion1 = new Atraccion("Lothlï¿½rien", 35, 1, 30, Tipo.DEGUSTACION);
 	Atraccion atraccion2 = new Atraccion("La Comarca", 3, 6.5, 150, Tipo.DEGUSTACION);
-	Atraccion[] atracciones = { atraccion1, atraccion2 };
+
 	
 	@Before
 	public void setUp() {
+		List<Atraccion> atracciones = new ArrayList<Atraccion>();
+		atracciones.add(atraccion1);
+		atracciones.add(atraccion2);
 		//String nombre, Tipo tipo, int costoAbsolutoDePromo, Producto[] atracciones
 		promo = new PromoAbsoluta("Bon Apetit", Tipo.DEGUSTACION, atracciones, 36);
 	}
@@ -25,5 +31,5 @@ public class PromoAbsolutaTests {
 		assertEquals(costoEsperado, promo.getCosto(), 0);
 	}
 
-*/
+
 }

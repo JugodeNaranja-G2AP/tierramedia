@@ -3,10 +3,10 @@ package tierramedia;
 import java.util.List;
 
 public class PromoPorcentual extends Promocion {
-	
+
 	private int porcentajeDescuento;
 
-	public PromoPorcentual(String nombre, Tipo tipo, int porcentajeDescuento, List<Atraccion> atracciones) {
+	public PromoPorcentual(String nombre, Tipo tipo, List<Atraccion> atracciones, int porcentajeDescuento) {
 		super(nombre, tipo, atracciones);
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
@@ -21,6 +21,5 @@ public class PromoPorcentual extends Promocion {
 		int costoDePack = super.getCosto();
 		return costoDePack - realizarDescuento(costoDePack);
 	}
-	
-	
+
 }

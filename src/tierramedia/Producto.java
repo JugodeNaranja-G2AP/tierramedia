@@ -9,5 +9,6 @@ public interface Producto {
 	boolean puedeSerOfertadoA(Usuario u);
 	boolean esPromocion();
 	void descontarCupo();
+	String getNombre();
 	List<Atraccion> obtenerAtracciones();
 }

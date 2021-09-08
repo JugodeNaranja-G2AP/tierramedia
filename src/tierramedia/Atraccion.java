@@ -18,6 +18,7 @@ public class Atraccion  implements Producto {
 		this.tipo = tipo;
 	}
 
+	@Override
 	public String getNombre() {
 		return nombre;
 	}

@@ -15,10 +15,9 @@ public abstract class Promocion implements Producto {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.atracciones = atracciones;
-		this.costoDePack = getCosto();
-		this.tiempoTotal = getTiempo();
 	}
 
+	@Override
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -83,7 +82,7 @@ public abstract class Promocion implements Producto {
 
 	@Override
 	public String toString() {
-		return "PROMOCION \n Nombre de la Promo: " + nombre + "\n Atracciones que incluye:\n " + atracciones
+		return "PROMOCION \n Nombre de la Promo: " + nombre + "\n Atracciones que incluye:\n\n " + atracciones
 				+ "\n Tiempo Total = " + getTiempo() + " horas \n Costo del pack = " + getCosto()
 				+ " monedas de oro\n Tipo = " + tipo + "\n\n";
 	}
