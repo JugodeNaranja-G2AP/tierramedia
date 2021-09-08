@@ -9,7 +9,8 @@ public class Usuario {
 	private int presupuesto;
 	private double tiempoDisponible;
 	private Tipo tipoAtraccionPreferida;
-	protected List<Producto> productosReservados; 
+	protected List<Producto> productosReservados;
+	private List<Producto> productosComprados;
 
 	public Usuario(String nombre, int presupuesto, double tiempoDisponible, Tipo tipoDeAtraccionPreferida) {
 		this.nombre = nombre;
@@ -17,6 +18,7 @@ public class Usuario {
 		this.tiempoDisponible = tiempoDisponible;
 		this.tipoAtraccionPreferida = tipoDeAtraccionPreferida;
 		this.productosReservados = new ArrayList<Producto>();
+		this.productosComprados = new ArrayList<Producto>();
 	}
 
 	public String getNombre() {
@@ -34,14 +36,34 @@ public class Usuario {
 	public Tipo getTipoDeAtraccionPreferida() {
 		return tipoAtraccionPreferida;
 	}
-	
-	public List<Producto> obtenerProductosComprados() {
+
+	public List<Producto> obtenerProductosReservados() {
 		return this.productosReservados;
 	}
-	
+
+	public List<Producto> obtenerProductosComprados() {
+		return this.productosComprados;
+	}
+
+	public int obtenerCostoTotalItinerario() {
+		int costoTotal = 0;
+		for (Producto p : productosComprados) {
+			costoTotal += p.getCosto();
+		}
+		return costoTotal;
+	}
+
+	public double obtenerTiempoTotalItinerario() {
+		double tiempoTotal = 0;
+		for (Producto p : productosComprados) {
+			tiempoTotal += p.getTiempo();
+		}
+		return tiempoTotal;
+	}
+
 	public boolean comproElProducto(Producto producto) {
-		List<Producto> productosComprados = obtenerProductosComprados();
-		return productosComprados.contains(producto);	
+		List<Producto> productosComprados = obtenerProductosReservados();
+		return productosComprados.contains(producto);
 	}
 
 	private void setPresupuesto(int monto) {
@@ -69,10 +91,11 @@ public class Usuario {
 		double tiempo = producto.getTiempo();
 		int costo = producto.getCosto();
 		productosReservados.add(producto);
+		productosComprados.add(producto);
 		producto.descontarCupo();
-		if(producto.esPromocion()) {
+		if (producto.esPromocion()) {
 			atracciones = producto.obtenerAtracciones();
-			for(Atraccion a: atracciones) {
+			for (Atraccion a : atracciones) {
 				productosReservados.add(a);
 			}
 		}
