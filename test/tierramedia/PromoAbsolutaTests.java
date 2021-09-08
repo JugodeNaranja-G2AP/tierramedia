@@ -11,7 +11,6 @@ import org.junit.Test;
 public class PromoAbsolutaTests {
 	
 	Promocion promo;
-	//String nombre, int costoDeVisita, double tiempoDeVisita, int cupoDePersonas, Tipo tipo
 	Atraccion atraccion1 = new Atraccion("Lothl�rien", 35, 1, 30, Tipo.DEGUSTACION);
 	Atraccion atraccion2 = new Atraccion("La Comarca", 3, 6.5, 150, Tipo.DEGUSTACION);
 
@@ -21,7 +20,6 @@ public class PromoAbsolutaTests {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		atracciones.add(atraccion1);
 		atracciones.add(atraccion2);
-		//String nombre, Tipo tipo, int costoAbsolutoDePromo, Producto[] atracciones
 		promo = new PromoAbsoluta("Bon Apetit", Tipo.DEGUSTACION, atracciones, 36);
 	}
 

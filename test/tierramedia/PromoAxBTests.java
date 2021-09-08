@@ -11,8 +11,7 @@ import org.junit.Test;
 public class PromoAxBTests {
 
 	Promocion promo;
-	// String nombre, double costoDeVisita, int tiempoDeVisita, int cupoDePersonas,
-	// Tipo tipo
+
 	Atraccion atraccion1 = new Atraccion("Minas Tirith", 5, 2, 25, Tipo.PAISAJE);
 	Atraccion atraccion2 = new Atraccion("Abismo de Helm", 5, 2, 15, Tipo.PAISAJE);
 	Atraccion atraccionGratis = new Atraccion("Erebor", 12, 3, 32, Tipo.PAISAJE);
@@ -23,7 +22,6 @@ public class PromoAxBTests {
 		atracciones.add(atraccion1);
 		atracciones.add(atraccion2);
 		atracciones.add(atraccionGratis);
-		// String nombre, Tipo tipo, Producto[] atracciones, Producto atraccionGratis
 		promo = new PromoAxB("Nuevas Maravillas", Tipo.PAISAJE, atracciones, atraccionGratis);
 
 	}
