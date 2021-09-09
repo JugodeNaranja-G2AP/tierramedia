@@ -9,7 +9,7 @@ public class Usuario {
 	private int presupuesto;
 	private double tiempoDisponible;
 	private Tipo tipoAtraccionPreferida;
-	protected List<Producto> productosReservados;
+	public List<Producto> productosReservados;
 	private List<Producto> productosComprados;
 
 	public Usuario(String nombre, int presupuesto, double tiempoDisponible, Tipo tipoDeAtraccionPreferida) {
@@ -106,7 +106,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario \n nombre: " + nombre + "\n Presupuesto: " + presupuesto
+		return "Usuario \n Nombre: " + nombre + "\n Presupuesto: " + presupuesto
 				+ " monedas de oro\n Tiempo disponible: " + tiempoDisponible + " horas\n Tipo atraccion preferida: "
 				+ tipoAtraccionPreferida + "\n\n";
 	}
