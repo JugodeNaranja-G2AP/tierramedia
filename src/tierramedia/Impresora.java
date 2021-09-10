@@ -28,7 +28,6 @@ public class Impresora {
 		salida.println(" ");
 		salida.println("Total de su compra: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
 		salida.close();
-
 	}
 
 	public static void imprimirElNoItinerario(Usuario u, String archivo) throws IOException {

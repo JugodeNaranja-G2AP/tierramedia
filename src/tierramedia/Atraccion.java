@@ -1,6 +1,7 @@
 package tierramedia;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Atraccion  implements Producto {
 	
@@ -65,6 +66,25 @@ public class Atraccion  implements Producto {
 	public boolean puedeSerOfertadoA(Usuario u) {
 		return  this.hayCupo() && u.getPresupuesto() >= costoDeVisita && 
 				u.getTiempoDisponible() >= tiempoDeVisita;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(costoDeVisita, nombre, tiempoDeVisita, tipo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Atraccion other = (Atraccion) obj;
+		return costoDeVisita == other.costoDeVisita && Objects.equals(nombre, other.nombre)
+				&& Double.doubleToLongBits(tiempoDeVisita) == Double.doubleToLongBits(other.tiempoDeVisita)
+				&& tipo == other.tipo;
 	}
 
 	@Override

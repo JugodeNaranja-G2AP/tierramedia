@@ -1,0 +1,3 @@
+PromoAxB/Delicias,Degustacion,Rivendell/Rohan;La Comarca;Rivendell
+PromoAbsoluta/Naturaleza,Paisaje,15/Belerian;Lindon
+PromoPorcentual/Elixir,Degustacion,30/Rohan;Lothlorien
