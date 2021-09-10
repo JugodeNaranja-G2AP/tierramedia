@@ -2,6 +2,7 @@ package tierramedia;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Promocion implements Producto {
 
@@ -78,6 +79,26 @@ public abstract class Promocion implements Producto {
 	@Override
 	public boolean puedeSerOfertadoA(Usuario u) {
 		return hayCupo() && u.getPresupuesto() >= this.getCosto() && u.getTiempoDisponible() >= this.getTiempo();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(atracciones, costoDePack, nombre, tiempoTotal, tipo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Promocion other = (Promocion) obj;
+		return Objects.equals(atracciones, other.atracciones) && costoDePack == other.costoDePack
+				&& Objects.equals(nombre, other.nombre)
+				&& Double.doubleToLongBits(tiempoTotal) == Double.doubleToLongBits(other.tiempoTotal)
+				&& tipo == other.tipo;
 	}
 
 	@Override

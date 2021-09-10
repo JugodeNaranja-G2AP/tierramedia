@@ -2,6 +2,7 @@ package tierramedia;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Usuario {
 
@@ -9,7 +10,7 @@ public class Usuario {
 	private int presupuesto;
 	private double tiempoDisponible;
 	private Tipo tipoAtraccionPreferida;
-	protected List<Producto> productosReservados;
+	public List<Producto> productosReservados;
 	private List<Producto> productosComprados;
 
 	public Usuario(String nombre, int presupuesto, double tiempoDisponible, Tipo tipoDeAtraccionPreferida) {
@@ -106,8 +107,27 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario \n nombre: " + nombre + "\n Presupuesto: " + presupuesto
+		return "Usuario \n Nombre: " + nombre + "\n Presupuesto: " + presupuesto
 				+ " monedas de oro\n Tiempo disponible: " + tiempoDisponible + " horas\n Tipo atraccion preferida: "
 				+ tipoAtraccionPreferida + "\n\n";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombre, presupuesto, tiempoDisponible, tipoAtraccionPreferida);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(nombre, other.nombre) && presupuesto == other.presupuesto
+				&& Double.doubleToLongBits(tiempoDisponible) == Double.doubleToLongBits(other.tiempoDisponible)
+				&& tipoAtraccionPreferida == other.tipoAtraccionPreferida;
 	}
 }
