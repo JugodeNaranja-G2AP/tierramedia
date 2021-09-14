@@ -29,7 +29,7 @@ public class PuedeOfertarseTest {
 
 	@Test
 	public void atraccionSiPuedeOfrecerseTest() {
-
+    
 		// el usuario cuenta con dinero y tiempo para hacer la atracción
 		assertTrue(atraccion2.puedeSerOfertadoA(user1));
 	}
@@ -46,9 +46,19 @@ public class PuedeOfertarseTest {
 
 	@Test
 	public void promoSiPuedeOfrecerseTest() {
-
+    
 		// el usuario dispone de dinero y tiempo, pero la atracción no de su preferencia
 		assertTrue(promo.puedeSerOfertadoA(user3));
+	}
+	
+	@Test
+	public void atraccionReservadaEnPromoEsGuardadaTest() {
+		List<Producto> productosReservados = new ArrayList<Producto>();
+		assertTrue(promo.puedeSerOfertadoA(user3));
+		user3.reservarProducto(promo);
+		productosReservados = user3.obtenerProductosReservados();
+		assertTrue(productosReservados.contains(atraccion1));
+		assertTrue(productosReservados.contains(atraccion2));
 	}
 
 }

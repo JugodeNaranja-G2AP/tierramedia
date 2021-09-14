@@ -1,5 +1,6 @@
 Muchas gracias Legolas por tu visita a Tierra Media
  
+ 
 El resumen de tu cuenta:
 Tu presupuesto actual: 75 monedas de oro.
 Tu tiempo disponible actual: 0 horas.
@@ -15,3 +16,4 @@ Tu itinerario requiere un tiempo de 10 horas.
 =========================================================
  
 Total de tu compra: 25 monedas de oro.
+
