@@ -4,8 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import main.Reloj;
-
 public class Impresora {
 	public static void imprimirItinerarioDeUsuario(Usuario u, String archivo) throws IOException {
 		PrintWriter salida = new PrintWriter(new FileWriter(archivo));

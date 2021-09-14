@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import tierramedia.Impresora;
 import tierramedia.Producto;
+import tierramedia.Reloj;
 import tierramedia.TierraMedia;
 import tierramedia.Usuario;
 
