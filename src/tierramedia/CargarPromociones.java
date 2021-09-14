@@ -22,11 +22,11 @@ public class CargarPromociones {
 			while (linea != null) {
 				try {
 					String[] divisor = linea.split("/");
-					String claseDePromo = divisor[0];
+					ClaseDePromo clase = ClaseDePromo.valueOf(ClaseDePromo.class, divisor[0].trim().toUpperCase());
 					String infoDePromo = divisor[1];
 					String atraccionesString = divisor[2];
 
-					if (claseDePromo.equals("PromoAxB")) {
+					if (clase.equals(ClaseDePromo.PROMOAXB)) {
 						String[] datosAxB = infoDePromo.split(",");
 						String nombre = datosAxB[0];
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosAxB[1].trim().toUpperCase());
@@ -39,13 +39,13 @@ public class CargarPromociones {
 							atracciones.add(agregarAtraccionPorNombre(atraccionesDePromo[i], archivoAtracciones));
 						}
 
-						Promocion promo = new PromoAxB(nombre, tipo, atracciones, atraccionGratis);
+						Promocion promo = new PromoAxB(nombre, clase, tipo, atracciones, atraccionGratis);
 
 						promos.add(promo);
 						linea = br.readLine();
 
 					}
-					if (claseDePromo.equals("PromoAbsoluta")) {
+					if (clase.equals(ClaseDePromo.PROMO_ABSOLUTA)) {
 						String[] datosAbsoluta = infoDePromo.split(",");
 						String nombre = datosAbsoluta[0];
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosAbsoluta[1].trim().toUpperCase());
@@ -58,13 +58,13 @@ public class CargarPromociones {
 							atracciones.add(agregarAtraccionPorNombre(atraccionesDePromo[i], archivoAtracciones));
 						}
 
-						Promocion promo = new PromoAbsoluta(nombre, tipo, atracciones, costo);
+						Promocion promo = new PromoAbsoluta(nombre, clase, tipo, atracciones, costo);
 
 						promos.add(promo);
 						linea = br.readLine();
 
 					}
-					if (claseDePromo.equals("PromoPorcentual")) {
+					if (clase.equals(ClaseDePromo.PROMO_PORCENTUAL)) {
 						String[] datosDescuento = infoDePromo.split(",");
 						String nombre = datosDescuento[0];
 						Tipo tipo = Tipo.valueOf(Tipo.class, datosDescuento[1].trim().toUpperCase());
@@ -77,7 +77,7 @@ public class CargarPromociones {
 							atracciones.add(agregarAtraccionPorNombre(atraccionesDePromo[i], archivoAtracciones));
 						}
 
-						Promocion promo = new PromoPorcentual(nombre, tipo, atracciones, porcentaje);
+						Promocion promo = new PromoPorcentual(nombre, clase, tipo, atracciones, porcentaje);
 
 						promos.add(promo);
 						linea = br.readLine();

@@ -3,8 +3,8 @@ package tierramedia;
 import java.util.List;
 import java.util.Objects;
 
-public class Atraccion  implements Producto {
-	
+public class Atraccion implements Producto {
+
 	private String nombre;
 	private int costoDeVisita;
 	private double tiempoDeVisita;
@@ -51,21 +51,20 @@ public class Atraccion  implements Producto {
 	public void descontarCupo() {
 		this.cupoDePersonas--;
 	}
-	
+
 	@Override
 	public boolean esPromocion() {
 		return false;
 	}
-	
+
 	@Override
-    public List<Atraccion> obtenerAtracciones() {
-        return List.of(this);
-    }
+	public List<Atraccion> obtenerAtracciones() {
+		return List.of(this);
+	}
 
 	@Override
 	public boolean puedeSerOfertadoA(Usuario u) {
-		return  this.hayCupo() && u.getPresupuesto() >= costoDeVisita && 
-				u.getTiempoDisponible() >= tiempoDeVisita;
+		return this.hayCupo() && u.getPresupuesto() >= costoDeVisita && u.getTiempoDisponible() >= tiempoDeVisita;
 	}
 
 	@Override
@@ -89,8 +88,7 @@ public class Atraccion  implements Producto {
 
 	@Override
 	public String toString() {
-		return "Atraccion\n Nombre : " + nombre + "\n Costo de visita : " + costoDeVisita
-				+ " Monedas de oro,\n Tiempo de visita : " + tiempoDeVisita + " horas,\n Cupo de personas : "
-				+ cupoDePersonas + ",\n Tipo = " + tipo + "] \n\n";
+		return " La atracción " + nombre + " tiene un costo de  " + costoDeVisita
+				+ " monedas de oro, y un tiempo de visita de " + Reloj.conversor(tiempoDeVisita) + "." + "\n";
 	}
 }

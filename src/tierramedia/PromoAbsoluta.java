@@ -6,14 +6,24 @@ public class PromoAbsoluta extends Promocion {
 
 	private int costoDePromo;
 
-	public PromoAbsoluta(String nombre, Tipo tipo, List<Atraccion> atracciones, int costoAbsolutoDePromo) {
-		super(nombre, tipo, atracciones);
+	public PromoAbsoluta(String nombre, ClaseDePromo clase, Tipo tipo, List<Atraccion> atracciones,
+			int costoAbsolutoDePromo) {
+		super(nombre, clase, tipo, atracciones);
 		this.costoDePromo = costoAbsolutoDePromo;
 	}
 
 	@Override
 	public int getCosto() {
 		return this.costoDePromo;
+	}
+	
+	public int ahorro() {
+		return super.getCosto() - costoDePromo;
+	}
+
+	public String descripcion() {
+		return " Esta promo tiene un precio único de " + costoDePromo + " monedas de oro. \n"
+				+ " Te ahorrás "+ ahorro() + " monedas de oro.\n";
 	}
 
 }

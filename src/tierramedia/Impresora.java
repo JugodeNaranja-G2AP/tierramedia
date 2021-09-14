@@ -3,30 +3,27 @@ package tierramedia;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+
+import main.Reloj;
 
 public class Impresora {
 	public static void imprimirItinerarioDeUsuario(Usuario u, String archivo) throws IOException {
 		PrintWriter salida = new PrintWriter(new FileWriter(archivo));
-		List<Producto> productosComprados = u.obtenerProductosComprados();
 
-		salida.println("Muchas gracias " + u.getNombre() + " por su visita a Tierra Media");
+		salida.println("Muchas gracias " + u.getNombre() + " por tu visita a Tierra Media");
 		salida.println(" ");
-		salida.println("El resumen de su cuenta:");
-		salida.println("Su presupuesto actual: " + u.getPresupuesto() + " monedas de oro.");
-		salida.println("Su tiempo disponible actual: " + u.getTiempoDisponible() + " horas.");
+		salida.println("El resumen de tu cuenta:");
+		salida.println("Tu presupuesto actual: " + u.getPresupuesto() + " monedas de oro.");
+		salida.println("Tu tiempo disponible actual: " + Reloj.conversor(u.getTiempoDisponible()) + ".");
 		salida.println("=========================================================");
-		salida.println("Usted ha adquirido:");
-		salida.println(" ");
-		for (Producto p : productosComprados) {
-			salida.println("Nombre de promo/atracción: " + p.getNombre());
-			salida.println("Costo: " + p.getCosto() + " monedas de oro.");
-			salida.println("Tiempo requerido de visita: " + p.getTiempo() + " horas.");
-			salida.println(" ");
-		}
+		salida.println("\nContrataste los siguientes productos:");
+		salida.println(u.obtenerNombresdeProductosComprados());
+		salida.println("El monto total abonado es: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
+		salida.println("Tu itinerario requiere un tiempo de "
+				+ Reloj.conversor(u.obtenerTiempoTotalItinerario()) + ".\n");
 		salida.println("=========================================================");
 		salida.println(" ");
-		salida.println("Total de su compra: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
+		salida.println("Total de tu compra: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
 		salida.close();
 	}
 
@@ -36,9 +33,9 @@ public class Impresora {
 		salida.println("Muchas gracias " + u.getNombre() + " por su visita a Tierra Media");
 		salida.println(" ");
 		salida.println("=========================================================");
-		salida.println("Usted no ha contratado ninguna atracci�n");
+		salida.println(" No contrataste ninguna atracción.");
 		salida.println(" ");
-		salida.println("Lo esperamos la pr�xima!");
+		salida.println("¡Te esperamos la próxima!");
 		salida.println("=========================================================");
 		salida.println(" ");
 		salida.close();

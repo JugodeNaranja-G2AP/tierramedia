@@ -7,15 +7,17 @@ import java.util.Objects;
 public abstract class Promocion implements Producto {
 
 	private String nombre;
-	private List<Atraccion> atracciones = new ArrayList<Atraccion>();
+	protected List<Atraccion> atracciones = new ArrayList<Atraccion>();
 	private double tiempoTotal;
 	private int costoDePack;
 	private Tipo tipo;
+	private ClaseDePromo clase;
 
-	public Promocion(String nombre, Tipo tipo, List<Atraccion> atracciones) {
+	public Promocion(String nombre, ClaseDePromo clase, Tipo tipo, List<Atraccion> atracciones) {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.atracciones = atracciones;
+		this.clase = clase;
 	}
 
 	@Override
@@ -26,6 +28,10 @@ public abstract class Promocion implements Producto {
 	@Override
 	public Tipo getTipo() {
 		return tipo;
+	}
+
+	public ClaseDePromo getClase() {
+		return clase;
 	}
 
 	@Override
@@ -104,8 +110,10 @@ public abstract class Promocion implements Producto {
 	@Override
 	public String toString() {
 		return "PROMOCION \n Nombre de la Promo: " + nombre + "\n Atracciones que incluye:\n\n " + atracciones
-				+ "\n Tiempo Total = " + getTiempo() + " horas \n Costo del pack = " + getCosto()
+				+ "\n Tiempo Total = " + Reloj.conversor(getTiempo()) + ".\n" + descripcion() + " Costo del pack = " + getCosto()
 				+ " monedas de oro\n Tipo = " + tipo + "\n\n";
 	}
+
+	protected abstract String descripcion();
 
 }

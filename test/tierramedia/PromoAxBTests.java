@@ -22,7 +22,7 @@ public class PromoAxBTests {
 		atracciones.add(atraccion1);
 		atracciones.add(atraccion2);
 		atracciones.add(atraccionGratis);
-		promo = new PromoAxB("Nuevas Maravillas", Tipo.PAISAJE, atracciones, atraccionGratis);
+		promo = new PromoAxB("Nuevas Maravillas", ClaseDePromo.PROMOAXB, Tipo.PAISAJE, atracciones, atraccionGratis);
 
 	}
 

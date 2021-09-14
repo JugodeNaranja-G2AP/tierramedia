@@ -28,19 +28,22 @@ public class App {
 			@SuppressWarnings("resource")
 			Scanner sc = new Scanner(System.in);
 
-			System.out.println("Bienvenid@ " + u.getNombre() + " a Tierra Media.");
-			System.out.println("Sus datos y perfil son los siguientes: \n\n" + u);
+			System.out.println("                 ¡Bienvenid@ " + u.getNombre() + " a Tierra Media!");
+			System.out.println("\nTus datos y perfil son los siguientes: \n\n" + u);
 			System.out
-					.println("A continuaci�n se le mostrar� atracciones y promos tur�sticas que ofrece Tierra Media.");
+					.println("A continuación te mostraremos atracciones y promos turísticas que ofrece Tierra Media.");
 			System.out
 					.println("Algunos de estos packs ofrecen descuentos y reducciones del precio total del paquete.\n");
-			System.out.println("=========================================================================\n");
+			System.out.println(
+					"============================================================================================");
 
-			System.out.println("Presiona enter para continuar");
+			System.out.println("\n                         Presiona enter para continuar");
 
 			if (sc.hasNextLine()) {
 				sc.nextLine();
 			}
+			System.out.println(
+					"============================================================================================\n");
 
 			for (Producto p : productosOrdenados) {
 
@@ -48,13 +51,16 @@ public class App {
 					if (u.comproElProducto(p)) {
 						continue;
 					} else {
+						String tipoDeProducto = p.esPromocion() ? "promo" : "atracción";
 						System.out.println(p);
-						System.out.println("Su presupuesto actual es: " + u.getPresupuesto() + ""
-								+ " monedas de oro \nSu tiempo disponible es: " + u.getTiempoDisponible() + " horas.");
+						System.out.println(" Tu presupuesto actual es de " + u.getPresupuesto()
+								+ " monedas de oro \n y tu tiempo disponible es de "
+								+ Reloj.conversor(u.getTiempoDisponible()) + ".");
 						System.out.println("\n");
 						do {
 
-							System.out.println("Ingrese si acepta con: si o no ");
+							System.out.println(
+									"                     ¿Querés comprar esta " + tipoDeProducto + "? (si/no)");
 
 							respuesta = sc.nextLine();
 							System.out.println("\n");
@@ -63,61 +69,67 @@ public class App {
 
 						if (respuesta.equalsIgnoreCase("si")) {
 							u.reservarProducto(p);
-							String tipoDeProducto = p.esPromocion() ? "la promo" : "la atracci�n";
 							System.out.println(
-									"Felicitaciones! usted ha adquirido " + tipoDeProducto + " " + p.getNombre());
-							System.out.println("\n");
-							System.out.println("\nPresiona enter para continuar\n");
+									"¡Felicitaciones! Adquiriste la " + tipoDeProducto + " " + p.getNombre() + ".");
+							System.out.println("\n                         Presiona enter para continuar");
 
 							if (sc.hasNextLine()) {
 								sc.nextLine();
 							}
+							System.out.println(
+									"============================================================================================\n");
 						} else {
 							continue;
 						}
-					}
-					if (u.getPresupuesto() == 0 || u.getTiempoDisponible() == 0
-							|| u.getPresupuesto() < p.getCosto() && u.getTiempoDisponible() >= p.getTiempo()
-							|| u.getPresupuesto() >= p.getCosto() && u.getTiempoDisponible() < p.getTiempo()) {
-						System.out.println("Usted ha adquirido: \n");
-						System.out.println(u.obtenerProductosComprados());
-						System.out.println("Los totales de su compra son: \n");
-						System.out.println(
-								"El monto total abonado es: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
-						System.out.println("Las horas totales que requieren su itinerario son: "
-								+ u.obtenerTiempoTotalItinerario() + " horas.");
-						System.out.println("\n");
-						System.out.println("=================================================================");
-						String archivoDeSalida = "salida/" + u.getNombre() + ".txt";
-						try {
-							Impresora.imprimirItinerarioDeUsuario(u, archivoDeSalida);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-
 					}
 
 				}
 			}
 			if (u.productosReservados.size() == 0) {
-				System.out.println("=================================================================");
-				System.out.println("\nUsted no ha comprado ninguna atracci�n. \n");
-				System.out.println("Puede volver cuando lo desee! \n");
+				System.out.println("==========================================================================");
+				System.out.println("\n                 No compraste ninguna atracción. \n");
+				System.out.println("                 ¡Podes volver cuando quieras! \n");
 				System.out.println("\n");
-				System.out.println("=================================================================");
+				System.out.println("==========================================================================");
 				String archivoDeSalida = "salida/" + u.getNombre() + ".txt";
 				try {
 					Impresora.imprimirElNoItinerario(u, archivoDeSalida);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				System.out.println("\n                         Presiona enter para continuar");
+
+				if (sc.hasNextLine()) {
+					sc.nextLine();
+				}
+				System.out.println(
+						"============================================================================================\n");
+				continue;
 			}
-			System.out.println("\nPresiona enter para continuar");
+
+			System.out.println(
+					"¡Ya no podemos ofrecerte atracciones que respondan a tu tiempo o presupuesto disponible!");
+			System.out.println("\nContrataste los siguientes productos:");
+			System.out.println(u.obtenerNombresdeProductosComprados());
+			System.out.println("El monto total abonado es: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
+			System.out.println("Tu itinerario requiere un tiempo de "
+					+ Reloj.conversor(u.obtenerTiempoTotalItinerario()) + ".\n");
+			System.out.println(
+					"============================================================================================\n");
+			String archivoDeSalida = "salida/" + u.getNombre() + ".txt";
+			try {
+				Impresora.imprimirItinerarioDeUsuario(u, archivoDeSalida);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			System.out.println("\n                         Presiona enter para continuar");
 
 			if (sc.hasNextLine()) {
 				sc.nextLine();
 			}
-
+			System.out.println(
+					"============================================================================================\n");
 		}
 
 	}
