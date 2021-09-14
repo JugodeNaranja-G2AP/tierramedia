@@ -21,7 +21,7 @@ public class PromoPorcentualTests {
 		atracciones.add(atraccion1);
 		atracciones.add(atraccion2);
 
-		promo = new PromoPorcentual("La Gran Aventura", Tipo.AVENTURA, atracciones, 20);
+		promo = new PromoPorcentual("La Gran Aventura", ClaseDePromo.PROMO_PORCENTUAL, Tipo.AVENTURA, atracciones, 20);
 	}
 
 	@Test

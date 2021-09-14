@@ -1,15 +1,19 @@
-Muchas gracias Legolas por su visita a Tierra Media
+Muchas gracias Legolas por tu visita a Tierra Media
  
-El resumen de su cuenta:
-Su presupuesto actual: 88 monedas de oro.
-Su tiempo disponible actual: 2.0 horas.
+ 
+El resumen de tu cuenta:
+Tu presupuesto actual: 75 monedas de oro.
+Tu tiempo disponible actual: 0 horas.
 =========================================================
-Usted ha adquirido:
- 
-Nombre de promo/atracción: Valinor
-Costo: 12 monedas de oro.
-Tiempo requerido de visita: 4.0 horas.
- 
+
+Contrataste los siguientes productos:
+Espada Y Escudo
+Moria
+
+El monto total abonado es: 25 monedas de oro.
+Tu itinerario requiere un tiempo de 10 horas.
+
 =========================================================
  
-Total de su compra: 12 monedas de oro.
+Total de tu compra: 25 monedas de oro.
+

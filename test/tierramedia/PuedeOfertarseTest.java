@@ -23,31 +23,31 @@ public class PuedeOfertarseTest {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		atracciones.add(atraccion1);
 		atracciones.add(atraccion2);
-		
-		promo = new PromoPorcentual("La Gran Aventura", Tipo.AVENTURA, atracciones, 20);
+
+		promo = new PromoPorcentual("La Gran Aventura", ClaseDePromo.PROMO_PORCENTUAL, Tipo.AVENTURA, atracciones, 20);
 	}
 
 	@Test
-	public void atraccionSiPuedeOfrecerseTest() { 
-		
-		//el usuario cuenta con dinero y tiempo para hacer la atracci�n		
+	public void atraccionSiPuedeOfrecerseTest() {
+    
+		// el usuario cuenta con dinero y tiempo para hacer la atracción
 		assertTrue(atraccion2.puedeSerOfertadoA(user1));
 	}
-	
+
 	@Test
-	public void atraccionNoPuedeOfrecerseTest() { 
-		
-		//el usuario no puede costear la atracci�n		
+	public void atraccionNoPuedeOfrecerseTest() {
+
+		// el usuario no puede costear la atracción
 		assertFalse(atraccion1.puedeSerOfertadoA(user1));
-		
-		//no hay cupo para atracción
+
+		// no hay cupo para atracción
 		assertFalse(atraccion3.puedeSerOfertadoA(user2));
 	}
-	
+
 	@Test
 	public void promoSiPuedeOfrecerseTest() {
-		
-		//el usuario dispone de dinero y tiempo, pero la atracción no de su preferencia
+    
+		// el usuario dispone de dinero y tiempo, pero la atracción no de su preferencia
 		assertTrue(promo.puedeSerOfertadoA(user3));
 	}
 	
@@ -60,6 +60,5 @@ public class PuedeOfertarseTest {
 		assertTrue(productosReservados.contains(atraccion1));
 		assertTrue(productosReservados.contains(atraccion2));
 	}
-
 
 }

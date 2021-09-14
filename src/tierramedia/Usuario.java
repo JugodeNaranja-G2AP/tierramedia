@@ -46,6 +46,14 @@ public class Usuario {
 		return this.productosComprados;
 	}
 
+	public String obtenerNombresdeProductosComprados() {
+		String costoTotal = "";
+		for (Producto p : productosComprados) {
+			costoTotal += p.getNombre() + "\n";
+		}
+		return costoTotal;
+	}
+
 	public int obtenerCostoTotalItinerario() {
 		int costoTotal = 0;
 		for (Producto p : productosComprados) {
@@ -102,14 +110,12 @@ public class Usuario {
 		}
 		restarTiempoDisponible(tiempo);
 		restarPresupuesto(costo);
-
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario \n Nombre: " + nombre + "\n Presupuesto: " + presupuesto
-				+ " monedas de oro\n Tiempo disponible: " + tiempoDisponible + " horas\n Tipo atraccion preferida: "
-				+ tipoAtraccionPreferida + "\n\n";
+		return " Presupuesto de " + presupuesto + " monedas de oro\n Tiempo de " + Reloj.conversor(tiempoDisponible)
+				+ " horas disponibles \n Preferencia por atracciones de " + tipoAtraccionPreferida + "\n";
 	}
 
 	@Override

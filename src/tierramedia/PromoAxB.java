@@ -6,8 +6,9 @@ public class PromoAxB extends Promocion {
 
 	private Atraccion atraccionGratis;
 
-	public PromoAxB(String nombre, Tipo tipo, List<Atraccion> atracciones, Atraccion atraccionGratis) {
-		super(nombre, tipo, atracciones);
+	public PromoAxB(String nombre, ClaseDePromo clase, Tipo tipo, List<Atraccion> atracciones,
+			Atraccion atraccionGratis) {
+		super(nombre, clase, tipo, atracciones);
 		this.atraccionGratis = atraccionGratis;
 	}
 
@@ -18,5 +19,14 @@ public class PromoAxB extends Promocion {
 	@Override
 	public int getCosto() {
 		return super.getCosto() - this.atraccionGratis.getCosto();
+	}
+	
+	public int ahorro() {
+		return atraccionGratis.getCosto();
+	}
+
+	public String descripcion() {
+		return " ¡La atraccion " + atraccionGratis.getNombre() + " es completamente gratis!\n"
+				+ " Te ahorrás "+ ahorro() + " monedas de oro.\n";
 	}
 }
