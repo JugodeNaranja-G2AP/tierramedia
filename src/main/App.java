@@ -23,7 +23,7 @@ public class App {
 
 		// Consola
 		for (Usuario u : usuarios) {
-			List<Producto> productosOrdenados = tm.OrdenarProductosDeLista(u);
+			List<Producto> productosOrdenados = tm.ordenarProductosDeLista(u);
 			String respuesta;
 			@SuppressWarnings("resource")
 			Scanner sc = new Scanner(System.in);
@@ -112,8 +112,8 @@ public class App {
 			System.out.println("\nContrataste los siguientes productos:");
 			System.out.println(u.obtenerNombresdeProductosComprados());
 			System.out.println("El monto total abonado es: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
-			System.out.println("Tu itinerario requiere un tiempo de "
-					+ Reloj.conversor(u.obtenerTiempoTotalItinerario()) + ".\n");
+			System.out.println(
+					"Tu itinerario requiere un tiempo de " + Reloj.conversor(u.obtenerTiempoTotalItinerario()) + ".\n");
 			System.out.println(
 					"============================================================================================\n");
 			String archivoDeSalida = "salida/" + u.getNombre() + ".txt";

@@ -1,31 +1,31 @@
 package main;
 
 public class Reloj {
-	
+
 	public static String conversor(double horaDec) {
-		
-		if (minutos(horaDec)==0) {
-			if (horas(horaDec)==1) {
-				return horas(horaDec) + " hora";
+
+		if (obtenerMinutos(horaDec) == 0) {
+			if (obtenerHoras(horaDec) == 1) {
+				return obtenerHoras(horaDec) + " hora";
 			} else {
-				return horas(horaDec) + " horas";
+				return obtenerHoras(horaDec) + " horas";
 			}
-			
-		}else {
-				if (horas(horaDec)==1) {
-					return horas(horaDec) + " hora y " + minutos(horaDec) + " minutos";
-				} else {
-					return horas(horaDec) + " horas y " + minutos(horaDec) + " minutos";
-				}
+
+		} else {
+			if (obtenerHoras(horaDec) == 1) {
+				return obtenerHoras(horaDec) + " hora y " + obtenerMinutos(horaDec) + " minutos";
+			} else {
+				return obtenerHoras(horaDec) + " horas y " + obtenerMinutos(horaDec) + " minutos";
+			}
 		}
 	}
-	
-	private static int horas(double horaDec) {
+
+	private static int obtenerHoras(double horaDec) {
 		return (int) Math.round(horaDec);
 	}
-	
-	private static int minutos(double horaDec) {
-		return  (int) (horaDec * 60) % 60;
+
+	private static int obtenerMinutos(double horaDec) {
+		return (int) (horaDec * 60) % 60;
 	}
-	
+
 }

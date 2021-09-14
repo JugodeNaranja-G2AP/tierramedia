@@ -47,11 +47,11 @@ public class Usuario {
 	}
 
 	public String obtenerNombresdeProductosComprados() {
-		String costoTotal = "";
+		String nombreProductosComprados = "";
 		for (Producto p : productosComprados) {
-			costoTotal += p.getNombre() + "\n";
+			nombreProductosComprados += p.getNombre() + "\n";
 		}
-		return costoTotal;
+		return nombreProductosComprados;
 	}
 
 	public int obtenerCostoTotalItinerario() {

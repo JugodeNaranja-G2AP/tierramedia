@@ -22,14 +22,14 @@ public class PromoPorcentual extends Promocion {
 		int costoDePack = super.getCosto();
 		return costoDePack - realizarDescuento(costoDePack);
 	}
-	
+
 	public int ahorro() {
 		return realizarDescuento(super.getCosto());
 	}
 
 	public String descripcion() {
 		return " Esta promo tiene un descuento del " + porcentajeDescuento + "% sobre el precio total.\n"
-				+ " Te ahorrás "+ ahorro() + " monedas de oro.\n";
+				+ " Te ahorrás " + ahorro() + " monedas de oro.\n";
 	}
 
 }

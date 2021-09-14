@@ -19,8 +19,8 @@ public class Impresora {
 		salida.println("\nContrataste los siguientes productos:");
 		salida.println(u.obtenerNombresdeProductosComprados());
 		salida.println("El monto total abonado es: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
-		salida.println("Tu itinerario requiere un tiempo de "
-				+ Reloj.conversor(u.obtenerTiempoTotalItinerario()) + ".\n");
+		salida.println(
+				"Tu itinerario requiere un tiempo de " + Reloj.conversor(u.obtenerTiempoTotalItinerario()) + ".\n");
 		salida.println("=========================================================");
 		salida.println(" ");
 		salida.println("Total de tu compra: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
