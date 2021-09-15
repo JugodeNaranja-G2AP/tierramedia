@@ -53,4 +53,4 @@ La Secretaría de Turismo de la Tierra Media ha decidido crear un sistema para p
 -  **Aragorn**.  Su predilección son las aventuras. Posee un presupuesto de 112 monedas de oro y tiene 11 horas disponibles.
 
 
->[Enlace](https://youtube.com/) al video que explica como funciona el programa
+>[Enlace](https://youtu.be/pL75ABTlcMY/) al video que explica como funciona el programa
