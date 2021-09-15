@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CargarUsuarios {
-	
+
 	public static List<Usuario> obtener(String archivo) {
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -32,7 +32,7 @@ public class CargarUsuarios {
 					linea = br.readLine();
 
 				} catch (NumberFormatException e) {
-					System.err.println("Uno de los datos leídos no es un double o un entero");
+					System.err.println("Uno de los datos leï¿½dos no es un double o un entero");
 				}
 
 			}

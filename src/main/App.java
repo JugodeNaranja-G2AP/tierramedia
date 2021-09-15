@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import tierramedia.Impresora;
 import tierramedia.Producto;
+import tierramedia.Reloj;
 import tierramedia.TierraMedia;
 import tierramedia.Usuario;
 
@@ -112,8 +113,8 @@ public class App {
 			System.out.println("\nContrataste los siguientes productos:");
 			System.out.println(u.obtenerNombresdeProductosComprados());
 			System.out.println("El monto total abonado es: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
-			System.out.println("Tu itinerario requiere un tiempo de "
-					+ Reloj.conversor(u.obtenerTiempoTotalItinerario()) + ".\n");
+			System.out.println(
+					"Tu itinerario requiere un tiempo de " + Reloj.conversor(u.obtenerTiempoTotalItinerario()) + ".\n");
 			System.out.println(
 					"============================================================================================\n");
 			String archivoDeSalida = "salida/" + u.getNombre() + ".txt";

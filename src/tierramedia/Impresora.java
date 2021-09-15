@@ -4,8 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import main.Reloj;
-
 public class Impresora {
 	public static void imprimirItinerarioDeUsuario(Usuario u, String archivo) throws IOException {
 		PrintWriter salida = new PrintWriter(new FileWriter(archivo));
@@ -19,8 +17,8 @@ public class Impresora {
 		salida.println("\nContrataste los siguientes productos:");
 		salida.println(u.obtenerNombresdeProductosComprados());
 		salida.println("El monto total abonado es: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
-		salida.println("Tu itinerario requiere un tiempo de "
-				+ Reloj.conversor(u.obtenerTiempoTotalItinerario()) + ".\n");
+		salida.println(
+				"Tu itinerario requiere un tiempo de " + Reloj.conversor(u.obtenerTiempoTotalItinerario()) + ".\n");
 		salida.println("=========================================================");
 		salida.println(" ");
 		salida.println("Total de tu compra: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");

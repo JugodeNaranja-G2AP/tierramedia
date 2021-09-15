@@ -47,11 +47,11 @@ public class Usuario {
 	}
 
 	public String obtenerNombresdeProductosComprados() {
-		String costoTotal = "";
+		String nombreProductosComprados = "";
 		for (Producto p : productosComprados) {
-			costoTotal += p.getNombre() + "\n";
+			nombreProductosComprados += p.getNombre() + "\n";
 		}
-		return costoTotal;
+		return nombreProductosComprados;
 	}
 
 	public int obtenerCostoTotalItinerario() {
@@ -75,24 +75,16 @@ public class Usuario {
 		return productosComprados.contains(producto);
 	}
 
-	private void setPresupuesto(int monto) {
+	private void restarPresupuesto(int monto) {
 		if (monto > 0) {
 			this.presupuesto -= monto;
 		}
 	}
 
-	public void restarPresupuesto(int monto) {
-		setPresupuesto(monto);
-	}
-
-	private void setTiempoDisponible(double tiempo) {
+	private void restarTiempoDisponible(double tiempo) {
 		if (tiempo > 0) {
 			this.tiempoDisponible -= tiempo;
 		}
-	}
-
-	public void restarTiempoDisponible(double tiempo) {
-		setTiempoDisponible(tiempo);
 	}
 
 	public void reservarProducto(Producto producto) {

@@ -16,14 +16,16 @@ public class PromoAbsoluta extends Promocion {
 	public int getCosto() {
 		return this.costoDePromo;
 	}
-	
+
+	@Override
 	public int ahorro() {
 		return super.getCosto() - costoDePromo;
 	}
 
+	@Override
 	public String descripcion() {
-		return " Esta promo tiene un precio único de " + costoDePromo + " monedas de oro. \n"
-				+ " Te ahorrás "+ ahorro() + " monedas de oro.\n";
+		return " Esta promo tiene un precio único de " + costoDePromo + " monedas de oro. \n" + " Te ahorrás "
+				+ ahorro() + " monedas de oro.\n";
 	}
 
 }

@@ -22,14 +22,16 @@ public class PromoPorcentual extends Promocion {
 		int costoDePack = super.getCosto();
 		return costoDePack - realizarDescuento(costoDePack);
 	}
-	
+
+	@Override
 	public int ahorro() {
 		return realizarDescuento(super.getCosto());
 	}
 
+	@Override
 	public String descripcion() {
 		return " Esta promo tiene un descuento del " + porcentajeDescuento + "% sobre el precio total.\n"
-				+ " Te ahorrás "+ ahorro() + " monedas de oro.\n";
+				+ " Te ahorrás " + ahorro() + " monedas de oro.\n";
 	}
 
 }
