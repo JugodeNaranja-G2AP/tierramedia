@@ -1,7 +1,7 @@
 # Turismo en la Tierra Media
 Trabajo práctico del programa nacional "Argentina Programa". El objetivo consiste en aplicar las temáticas vistas hasta el momento relacionadas a POO en java.
 
-##Descripción
+## Descripción
 La Secretaría de Turismo de la Tierra Media ha decidido crear un sistema para promocionar el turismo en su territorio. Éste cuenta con la información de las distintas atracciones de toda la Tierra Media. El sistema es capaz de sugerir visitas a los visitantes y también de generar itinerarios a partir de la información de preferencias disponible en el perfil de los usuarios.
 
 ## Atracciones con las que cuenta el sistema:
@@ -27,7 +27,7 @@ La Secretaría de Turismo de la Tierra Media ha decidido crear un sistema para p
 |Rauros          |20                      |2.6          |15  |Paisaje  |
 |Bosque Fangorn  |6                       |3            |6   |Aventura  |
 
-## Promos incluídas:
+## Promos incluidas:
 
 >PromoAxB 
 - Comprando Rohan, La Comarca y Rivendell, Rivendell es gratis.
