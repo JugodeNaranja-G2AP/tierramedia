@@ -21,10 +21,12 @@ public class PromoAxB extends Promocion {
 		return super.getCosto() - this.atraccionGratis.getCosto();
 	}
 
+	@Override
 	public int ahorro() {
 		return atraccionGratis.getCosto();
 	}
 
+	@Override
 	public String descripcion() {
 		return " ¡La atraccion " + atraccionGratis.getNombre() + " es completamente gratis!\n" + " Te ahorrás "
 				+ ahorro() + " monedas de oro.\n";

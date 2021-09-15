@@ -26,14 +26,20 @@ public class PromoPorcentualTests {
 
 	@Test
 	public void obtenerCostoTest() {
-		double costoDePromoEsperado = 23;
-		assertEquals(costoDePromoEsperado, promo.getCosto(), 0);
+		int costoDePromoEsperado = 23;
+		assertEquals(costoDePromoEsperado, promo.getCosto());
 	}
 
 	@Test
 	public void obtenerTiempoTotalTest() {
 		double tiempoTotalEsperado = 7.00;
 		assertEquals(tiempoTotalEsperado, promo.getTiempo(), 0);
+	}
+	
+	@Test
+	public void ahorroTest() {
+		int ahorroEsperado = 5;
+		assertEquals(ahorroEsperado, promo.ahorro());
 	}
 
 }

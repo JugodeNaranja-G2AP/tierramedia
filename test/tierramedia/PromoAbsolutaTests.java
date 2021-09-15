@@ -24,8 +24,36 @@ public class PromoAbsolutaTests {
 
 	@Test
 	public void getCostoDePacktest() {
-		double costoEsperado = 36.00;
-		assertEquals(costoEsperado, promo.getCosto(), 0);
+		int costoEsperado = 36;
+		assertEquals(costoEsperado, promo.getCosto());
+	}
+
+	@Test
+	public void getTiempoDePackTest() {
+		double tiempoEsperado = 7.5;
+		assertEquals(tiempoEsperado, promo.getTiempo(), 0);
+	}
+
+	@Test
+	public void esPromoTest() {
+		assertTrue(promo.esPromocion());
+		assertFalse(atraccion1.esPromocion());
+	}
+
+	@Test
+	public void hayCupoEnPromoTest() {
+		assertTrue(promo.hayCupo());
+	}
+
+	@Test
+	public void hayCupoEnAtraccionTest() {
+		assertTrue(atraccion1.hayCupo());
+	}
+	
+	@Test
+	public void ahorroTest() {
+		int ahorroEsperado = 2;
+		assertEquals(ahorroEsperado, promo.ahorro());
 	}
 
 }

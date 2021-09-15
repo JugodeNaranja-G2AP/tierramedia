@@ -28,8 +28,19 @@ public class PromoAxBTests {
 
 	@Test
 	public void getCostoDePackTest() {
-		double costoDePromoEsperado = 10;
-		assertEquals(costoDePromoEsperado, promo.getCosto(), 0);
+		int costoDePromoEsperado = 10;
+		assertEquals(costoDePromoEsperado, promo.getCosto());
 	}
 
+	@Test
+	public void getTiempoDePackTest() {
+		double tiempoEsperado = 7.00;
+		assertEquals(tiempoEsperado, promo.getTiempo(), 0);
+	}
+
+	@Test
+	public void ahorroTest() {
+		int ahorroEsperado = 12;
+		assertEquals(ahorroEsperado, promo.ahorro());
+	}
 }
