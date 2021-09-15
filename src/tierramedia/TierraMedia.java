@@ -51,7 +51,7 @@ public class TierraMedia {
 		this.usuarios = CargarUsuarios.obtener(archivo);
 	}
 
-	public List<Producto> OrdenarProductosDeLista(Usuario u) {
+	public List<Producto> ordenarProductosDeLista(Usuario u) {
 		Collections.sort(this.productos, new OrdenadorDeProducto(u.getTipoDeAtraccionPreferida()));
 		return this.productos;
 	}

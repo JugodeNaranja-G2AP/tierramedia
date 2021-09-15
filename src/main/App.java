@@ -23,7 +23,7 @@ public class App {
 
 		// Consola
 		for (Usuario u : usuarios) {
-			List<Producto> productosOrdenados = tm.OrdenarProductosDeLista(u);
+			List<Producto> productosOrdenados = tm.ordenarProductosDeLista(u);
 			String respuesta;
 			@SuppressWarnings("resource")
 			Scanner sc = new Scanner(System.in);
