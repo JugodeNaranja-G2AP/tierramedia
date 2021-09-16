@@ -49,7 +49,7 @@ public class Usuario {
 	public String obtenerNombresdeProductosComprados() {
 		String nombreProductosComprados = "";
 		for (Producto p : productosComprados) {
-			nombreProductosComprados += p.getNombre() + "\n";
+			nombreProductosComprados += p.getNombre() + "\r\n";
 		}
 		return nombreProductosComprados;
 	}
