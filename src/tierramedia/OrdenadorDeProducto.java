@@ -11,28 +11,28 @@ public class OrdenadorDeProducto implements Comparator<Producto> {
 
 	@Override
 	public int compare(Producto o1, Producto o2) {
-		// Según tipo preferido de atracción
+		// SegÃºn tipo preferido de atracciÃ³n
 		if (o1.getTipo() == tipoAtraccionPreferida && o2.getTipo() != tipoAtraccionPreferida) {
 			return -1;
 		} else if (o1.getTipo() != tipoAtraccionPreferida && o2.getTipo() == tipoAtraccionPreferida) {
 			return 1;
 		}
 
-		// Según sea o no promocion
+		// SegÃºn sea o no promociÃ³n
 		if (o1.esPromocion() && !o2.esPromocion()) {
 			return -1;
 		} else if (!o1.esPromocion() && o2.esPromocion()) {
 			return 1;
 		}
 
-		// Según presupuesto disponible
+		// SegÃºn presupuesto disponible
 		if (o1.getCosto() > o2.getCosto()) {
 			return -1;
 		} else if (o1.getCosto() < o2.getCosto()) {
 			return 1;
 		}
 
-		// Según tiempo
+		// SegÃºn tiempo
 		return (int) (o1.getTiempo() - o2.getTiempo());
 
 	}
