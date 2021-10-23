@@ -1,4 +1,4 @@
-package tierramedia;
+package model;
 
 import static org.junit.Assert.*;
 
@@ -49,7 +49,7 @@ public class PromoAbsolutaTests {
 	public void hayCupoEnAtraccionTest() {
 		assertTrue(atraccion1.hayCupo());
 	}
-	
+
 	@Test
 	public void ahorroTest() {
 		int ahorroEsperado = 2;

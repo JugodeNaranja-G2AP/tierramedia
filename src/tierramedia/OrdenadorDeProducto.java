@@ -2,6 +2,8 @@ package tierramedia;
 
 import java.util.Comparator;
 
+import model.Tipo;
+
 public class OrdenadorDeProducto implements Comparator<Producto> {
 	Tipo tipoAtraccionPreferida;
 

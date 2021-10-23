@@ -1,15 +1,28 @@
-package tierramedia;
+package model;
 
 import java.util.List;
 import java.util.Objects;
 
+import tierramedia.Producto;
+import tierramedia.Reloj;
+
 public class Atraccion implements Producto {
 
+	private int id;
 	private String nombre;
 	private int costoDeVisita;
 	private double tiempoDeVisita;
 	private int cupoDePersonas;
 	private Tipo tipo;
+
+	public Atraccion(int id, String nombre, int costoDeVisita, double tiempoDeVisita, int cupoDePersonas, Tipo tipo) {
+		this.id = id;
+		this.nombre = nombre;
+		this.costoDeVisita = costoDeVisita;
+		this.tiempoDeVisita = tiempoDeVisita;
+		this.cupoDePersonas = cupoDePersonas;
+		this.tipo = tipo;
+	}
 
 	public Atraccion(String nombre, int costoDeVisita, double tiempoDeVisita, int cupoDePersonas, Tipo tipo) {
 		this.nombre = nombre;
@@ -17,6 +30,10 @@ public class Atraccion implements Producto {
 		this.tiempoDeVisita = tiempoDeVisita;
 		this.cupoDePersonas = cupoDePersonas;
 		this.tipo = tipo;
+	}
+	
+	public int getId() {
+		return id;
 	}
 
 	@Override

@@ -2,6 +2,10 @@ package tierramedia;
 
 import java.util.List;
 
+import model.Atraccion;
+import model.Tipo;
+import model.Usuario;
+
 public interface Producto {
 	Tipo getTipo();
 	int getCosto();

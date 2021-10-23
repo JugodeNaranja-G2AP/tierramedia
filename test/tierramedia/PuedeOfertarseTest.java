@@ -6,6 +6,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import model.Atraccion;
+import model.ClaseDePromo;
+import model.PromoPorcentual;
+import model.Promocion;
+import model.Tipo;
+import model.Usuario;
+
 public class PuedeOfertarseTest {
 
 	Promocion promo;
@@ -47,7 +54,7 @@ public class PuedeOfertarseTest {
 	@Test
 	public void promoSiPuedeOfrecerseTest() {
 
-		// el usuario dispone de dinero y tiempo, pero la atracción no de su preferencia
+		// el usuario dispone de dinero y tiempo, pero la atracción no es de su preferencia
 		assertTrue(promo.puedeSerOfertadoA(user3));
 	}
 
