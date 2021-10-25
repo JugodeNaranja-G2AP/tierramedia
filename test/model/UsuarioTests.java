@@ -1,4 +1,4 @@
-package tierramedia;
+package model;
 
 import static org.junit.Assert.*;
 
@@ -33,27 +33,27 @@ public class UsuarioTests {
 		int costoEsperado = 10;
 		assertEquals(costoEsperado, usuarioPrueba.obtenerCostoTotalItinerario(), 0);
 	}
-	
+
 	@Test
 	public void presupuestoTest() {
 		int presupuestoEsperado = 2;
 		assertEquals(presupuestoEsperado, usuarioPrueba.getPresupuesto());
-		
+
 	}
-	
+
 	@Test
 	public void tiempoDisponibleTest() {
 		double tiempoEsperado = 3;
 		assertEquals(tiempoEsperado, usuarioPrueba.getTiempoDisponible(), 0);
 	}
-	
+
 	@Test
 	public void comproElProductoTest() {
 		assertTrue(usuarioPrueba.comproElProducto(atraccion1));
 		assertTrue(usuarioPrueba.comproElProducto(atraccion2));
 		assertFalse(usuarioPrueba.comproElProducto(atraccion3));
 	}
-	
+
 	@Test
 	public void obtenerNombresdeProductosCompradosTest() {
 		String nombresEsperados = "Minas Tirith\r\nAbismo de Helm\r\n";

@@ -1,17 +1,31 @@
-package tierramedia;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import tierramedia.Producto;
+import tierramedia.Reloj;
+
 public class Usuario {
 
+	private int id;
 	private String nombre;
 	private int presupuesto;
 	private double tiempoDisponible;
 	private Tipo tipoAtraccionPreferida;
 	public List<Producto> productosReservados;
 	private List<Producto> productosComprados;
+
+	public Usuario(int id, String nombre, int presupuesto, double tiempoDisponible, Tipo tipoDeAtraccionPreferida) {
+		this.id = id;
+		this.nombre = nombre;
+		this.presupuesto = presupuesto;
+		this.tiempoDisponible = tiempoDisponible;
+		this.tipoAtraccionPreferida = tipoDeAtraccionPreferida;
+		this.productosReservados = new ArrayList<Producto>();
+		this.productosComprados = new ArrayList<Producto>();
+	}
 
 	public Usuario(String nombre, int presupuesto, double tiempoDisponible, Tipo tipoDeAtraccionPreferida) {
 		this.nombre = nombre;
@@ -20,6 +34,18 @@ public class Usuario {
 		this.tipoAtraccionPreferida = tipoDeAtraccionPreferida;
 		this.productosReservados = new ArrayList<Producto>();
 		this.productosComprados = new ArrayList<Producto>();
+	}
+
+	public void setProductosReservados(List<Producto> productosNoOfertables) {
+		this.productosReservados = productosNoOfertables;
+	}
+
+	public void setProductosComprados(List<Producto> productosComprados) {
+		this.productosComprados = productosComprados;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public String getNombre() {

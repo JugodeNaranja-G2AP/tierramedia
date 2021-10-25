@@ -1,10 +1,16 @@
-package tierramedia;
+package model;
 
 import java.util.List;
 
 public class PromoPorcentual extends Promocion {
 
 	private int porcentajeDescuento;
+
+	public PromoPorcentual(int id, String nombre, ClaseDePromo clase, Tipo tipo, List<Atraccion> atracciones,
+			int porcentajeDescuento) {
+		super(id, nombre, clase, tipo, atracciones);
+		this.porcentajeDescuento = porcentajeDescuento;
+	}
 
 	public PromoPorcentual(String nombre, ClaseDePromo clase, Tipo tipo, List<Atraccion> atracciones,
 			int porcentajeDescuento) {
@@ -21,6 +27,10 @@ public class PromoPorcentual extends Promocion {
 	public int getCosto() {
 		int costoDePack = super.getCosto();
 		return costoDePack - realizarDescuento(costoDePack);
+	}
+	
+	public int getPorcentajeDescuento() {
+		return porcentajeDescuento;
 	}
 
 	@Override

@@ -1,10 +1,16 @@
-package tierramedia;
+package model;
 
 import java.util.List;
 
 public class PromoAbsoluta extends Promocion {
 
 	private int costoDePromo;
+
+	public PromoAbsoluta(int id, String nombre, ClaseDePromo clase, Tipo tipo, List<Atraccion> atracciones,
+			int costoAbsolutoDePromo) {
+		super(id, nombre, clase, tipo, atracciones);
+		this.costoDePromo = costoAbsolutoDePromo;
+	}
 
 	public PromoAbsoluta(String nombre, ClaseDePromo clase, Tipo tipo, List<Atraccion> atracciones,
 			int costoAbsolutoDePromo) {

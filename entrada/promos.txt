@@ -1,9 +1,0 @@
-PromoAxB/Delicias,Degustacion,Rivendell/Rohan;La Comarca;Rivendell
-PromoAxB/El Horizonte,Paisaje,Doriath/Minas Tirith;Belerian;Doriath
-PromoAxB/El Desafío,Aventura,Bosque Negro/Moria;Gondor;Bosque Negro
-Promo_Absoluta/Bon Appetit,Degustacion,23/Eregion;Lothlorien
-Promo_Absoluta/Espada Y Escudo,Aventura,19/Valinor;Mordor
-Promo_Absoluta/Naturaleza,Paisaje,15/Belerian;Lindon
-Promo_Absoluta/Campos Floridos,Paisaje,25/Rauros;Lindon
-Promo_Porcentual/Elixir,Degustacion,30/Rohan;Lothlorien
-Promo_Porcentual/Veloz como el viento,Aventura,20/Valinor;Bosque Fangorn

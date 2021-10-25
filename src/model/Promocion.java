@@ -1,11 +1,15 @@
-package tierramedia;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import tierramedia.Producto;
+import tierramedia.Reloj;
+
 public abstract class Promocion implements Producto {
 
+	protected int id;
 	private String nombre;
 	protected List<Atraccion> atracciones = new ArrayList<Atraccion>();
 	private double tiempoTotal;
@@ -13,11 +17,23 @@ public abstract class Promocion implements Producto {
 	private Tipo tipo;
 	private ClaseDePromo clase;
 
+	public Promocion(int id, String nombre, ClaseDePromo clase, Tipo tipo, List<Atraccion> atracciones) {
+		this.id = id;
+		this.nombre = nombre;
+		this.tipo = tipo;
+		this.atracciones = atracciones;
+		this.clase = clase;
+	}
+
 	public Promocion(String nombre, ClaseDePromo clase, Tipo tipo, List<Atraccion> atracciones) {
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.atracciones = atracciones;
 		this.clase = clase;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	@Override
@@ -106,16 +122,24 @@ public abstract class Promocion implements Producto {
 				&& Double.doubleToLongBits(tiempoTotal) == Double.doubleToLongBits(other.tiempoTotal)
 				&& tipo == other.tipo;
 	}
+	
+	private String formatearAtracciones(List<Atraccion> atracciones) {
+        String atraccionesFormateadas = "";
+        for(Atraccion a: atracciones){
+          atraccionesFormateadas +=  "- " + a + "\r\n ";
+        }
+        return atraccionesFormateadas;
+    }
 
 	@Override
 	public String toString() {
-		return "PROMOCION \n Nombre de la Promo: " + nombre + "\n Atracciones que incluye:\n\n " + atracciones
-				+ "\n Tiempo Total = " + Reloj.conversor(getTiempo()) + ".\n" + descripcion() + " Costo del pack = " + getCosto()
-				+ " monedas de oro\n Tipo = " + tipo + "\n\n";
+		return "PROMOCION \n Nombre de la Promo: " + nombre + "\n Atracciones que incluye:\n\n " + formatearAtracciones(atracciones)
+				+ "\n Tiempo Total = " + Reloj.conversor(getTiempo()) + ".\n" + descripcion() + " Costo del pack = "
+				+ getCosto() + " monedas de oro\n Tipo = " + tipo + "\n\n";
 	}
 
 	protected abstract String descripcion();
-	
+
 	public abstract int ahorro();
 
 }

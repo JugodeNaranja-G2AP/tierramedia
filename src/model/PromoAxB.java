@@ -1,10 +1,16 @@
-package tierramedia;
+package model;
 
 import java.util.List;
 
 public class PromoAxB extends Promocion {
 
 	private Atraccion atraccionGratis;
+
+	public PromoAxB(int id, String nombre, ClaseDePromo clase, Tipo tipo, List<Atraccion> atracciones,
+			Atraccion atraccionGratis) {
+		super(id, nombre, clase, tipo, atracciones);
+		this.atraccionGratis = atraccionGratis;
+	}
 
 	public PromoAxB(String nombre, ClaseDePromo clase, Tipo tipo, List<Atraccion> atracciones,
 			Atraccion atraccionGratis) {

@@ -1,4 +1,4 @@
-package tierramedia;
+package model;
 
 import static org.junit.Assert.*;
 

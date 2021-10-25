@@ -21,7 +21,7 @@ public class Reloj {
 	}
 	
 	private static int obtenerHoras(double horaDec) {
-		return (int) Math.round(horaDec);
+		return (int) Math.floor(horaDec);
 	}
 	
 	private static int obtenerMinutos(double horaDec) {
