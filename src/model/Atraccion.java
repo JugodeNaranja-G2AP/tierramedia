@@ -105,7 +105,11 @@ public class Atraccion implements Producto {
 
 	@Override
 	public String toString() {
-		return " La atracción " + nombre + " tiene un costo de  " + costoDeVisita
-				+ " monedas de oro, y un tiempo de visita de " + Reloj.conversor(tiempoDeVisita) + "." + "\n";
+		String perfil  = "\n";
+		   perfil += "\t\t\t|               " + nombre + "\n";
+		   perfil += "\t\t\t|Tiempo de visita:\t" + Reloj.conversor(tiempoDeVisita) + "\n";
+		   perfil += "\t\t\t|Precio de visita:\t" + costoDeVisita+ " monedas de oro \n";
+		   perfil += "\t\t\t×¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
+	return perfil;
 	}
 }

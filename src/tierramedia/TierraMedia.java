@@ -71,44 +71,53 @@ public class TierraMedia {
 		for (Usuario usuario : this.usuarios) {
 			itinerario = userDAO.obtenerItinerario(usuario);
 			usuario.setProductosComprados(itinerario);
-			cargarListaNoOfertable(usuario, itinerario);
 		}
 	}
 
-	public void cargarListaNoOfertable(Usuario usuario, List<Producto> listaProductos) {
-		List<Atraccion> atraccionesDePromo = new ArrayList<Atraccion>();
-		List<Producto> productosNoOfertables = new ArrayList<Producto>();
-		if (listaProductos.size() != 0) {
-			for (Producto producto : listaProductos) {
-				if (producto.esPromocion()) {
-					atraccionesDePromo = producto.obtenerAtracciones();
-				}
-			}
-			for (Atraccion atraccion : atraccionesDePromo) {
-				productosNoOfertables.add(atraccion);
-			}
-		}
-		usuario.setProductosReservados(productosNoOfertables);
-	}
-	
 	public List<Producto> ordenarProductosDeLista(Usuario u) {
 		Collections.sort(this.productos, new OrdenadorDeProducto(u.getTipoDeAtraccionPreferida()));
 		return this.productos;
 	}
 	
+	private void actualizarCupos(Producto producto) {
+        List<Atraccion> atraccionesDePromo = new ArrayList<Atraccion>();
+        if (!producto.esPromocion()) {
+            atraccionDAO.update((Atraccion) producto);
+        } else {
+            atraccionesDePromo = producto.obtenerAtracciones();
+            for (Atraccion atraccion: atraccionesDePromo) {
+                 atraccionDAO.update(atraccion);
+            }
+        }
+    } 
+
 	private String displayBienvenida(Usuario u) {
 		String bienvenida = " ";
-		bienvenida += "                 ¡Bienvenid@ " + u.getNombre() + " a Tierra Media! \n";
-		bienvenida += "\nTus datos y perfil son los siguientes: \n\n" + u + "\n";
-		bienvenida += "A continuación te mostraremos atracciones y promos turísticas que ofrece Tierra Media.\n";
-		bienvenida += "Algunos de estos packs ofrecen descuentos y reducciones del precio total del paquete.\n\n";
+		bienvenida += "                           ¡Bienvenid@ " + u.getNombre() + " a Tierra Media! \n";
+		bienvenida += "\n   Tus datos y perfil son los siguientes: \n" + u + "\n";
+		bienvenida += "   A continuación te mostraremos atracciones y promos turísticas que ofrece Tierra Media.  \n";
+		bienvenida += "   Algunos de estos packs ofrecen descuentos y reducciones del precio total del paquete.   \n";
 		bienvenida += "============================================================================================ \n";
 
-		bienvenida += "\n                         Presiona enter para continuar \n";
+		bienvenida += "\n                              Presiona enter para continuar ";
 
 		return bienvenida;
 	}
 	
+	private String displayHolaDeNuevo(Usuario u) {
+		String bienvenida = " ";
+		bienvenida += "               ¡"+ u.getNombre() + "!  Bienvenid@ de nuevo a Tierra Media \n";
+		bienvenida += "\nTus datos y perfil son los siguientes: \n" + u + "\n";
+		bienvenida += "      Esta es la lista de productos que ya habías contratado:\n\n";
+		bienvenida += u.obtenerNombresdeProductosComprados()+ "\n";
+		bienvenida += "       A continuación te ofreceremos más atracciones y promociones para vos!\n";
+		bienvenida += "============================================================================================ \n";
+
+		bienvenida += "\n                              Presiona enter para continuar ";
+
+		return bienvenida;
+	}
+
 	public void ofertarProductos() {
 		agregarUsuarios();
 		agregarTodasAtracciones();
@@ -122,7 +131,11 @@ public class TierraMedia {
 			List<Producto> productosOrdenados = ordenarProductosDeLista(u);
 			String respuesta;
 
-			System.out.println(displayBienvenida(u));
+			if (u.obtenerProductosComprados().size() == 0) {
+				System.out.println(displayBienvenida(u));
+			} else {
+				System.out.println(displayHolaDeNuevo(u));
+			}
 
 			if (sc.hasNextLine()) {
 				sc.nextLine();
@@ -134,8 +147,8 @@ public class TierraMedia {
 				if (p.puedeSerOfertadoA(u) && !u.comproElProducto(p)) {
 					String tipoDeProducto = p.esPromocion() ? "promo" : "atracción";
 					System.out.println(p);
-					System.out.println(" Tu presupuesto actual es de " + u.getPresupuesto()
-							+ " monedas de oro \n y tu tiempo disponible es de "
+					System.out.println(" Oro disponible: " + u.getPresupuesto()
+							+ "\n Tiempo disponible: "
 							+ Reloj.conversor(u.getTiempoDisponible()) + ".");
 					System.out.println("\n");
 					do {
@@ -151,11 +164,9 @@ public class TierraMedia {
 						u.reservarProducto(p);
 						userDAO.registrarCompra(u, p);
 						userDAO.update(u);
-						if (!p.esPromocion()) {
-							atraccionDAO.update((Atraccion) p);
-						}
+						actualizarCupos(p);
 						System.out.println(
-								"¡Felicitaciones! Adquiriste la " + tipoDeProducto + " " + p.getNombre() + ".");
+								"\t¡Felicitaciones! Adquiriste la " + tipoDeProducto + " " + p.getNombre() + ".");
 						System.out.println("\n                         Presiona enter para continuar");
 
 						if (sc.hasNextLine()) {
@@ -169,14 +180,13 @@ public class TierraMedia {
 				}
 				continue;
 			}
-			if (u.productosReservados.size() == 0) {
-				System.out.println("==========================================================================");
-				System.out.println("\n                 No compraste ninguna atracción. \n");
-				System.out.println("                 ¡Podes volver cuando quieras! \n");
-				System.out.println("\n");
-				System.out.println("==========================================================================");
+			if (u.obtenerProductosComprados().size() == 0) {
+				System.out.println("============================================================================================");
+				System.out.println("\n\t\t\t     No compraste ninguna atracción. \n");
+				System.out.println("\t\t\t     ¡Podes volver cuando quieras! \n");
+				System.out.println("============================================================================================");
 
-				System.out.println("\n                         Presiona enter para continuar");
+				System.out.println("\n\t\t\t     Presiona enter para continuar");
 
 				if (sc.hasNextLine()) {
 					sc.nextLine();
@@ -187,16 +197,16 @@ public class TierraMedia {
 			}
 
 			System.out.println(
-					"¡Ya no podemos ofrecerte atracciones que respondan a tu tiempo o presupuesto disponible!");
-			System.out.println("\nContrataste los siguientes productos:");
+					"     ¡Ya no podemos ofrecerte atracciones que respondan a tu tiempo o presupuesto disponible!");
+			System.out.println("\n\t\tContrataste los siguientes productos:\n");
 			System.out.println(u.obtenerNombresdeProductosComprados());
-			System.out.println("El monto total abonado es: " + u.obtenerCostoTotalItinerario() + " monedas de oro.");
-			System.out.println(
-					"Tu itinerario requiere un tiempo de " + Reloj.conversor(u.obtenerTiempoTotalItinerario()) + ".\n");
+			System.out.println("\t\t\t|Tiempo TOTAL de itinerario:\t" + Reloj.conversor(u.obtenerTiempoTotalItinerario()));
+			System.out.println("\t\t\t|Precio TOTAL de itinerario:\t" + u.obtenerCostoTotalItinerario()+ " monedas de oro ");
+			System.out.println("\t\t\t×¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n");
 			System.out.println(
 					"============================================================================================\n");
 
-			System.out.println("\n                         Presiona enter para continuar");
+			System.out.println("                           Presiona enter para continuar");
 
 			if (sc.hasNextLine()) {
 				sc.nextLine();

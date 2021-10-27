@@ -14,7 +14,6 @@ public class Usuario {
 	private int presupuesto;
 	private double tiempoDisponible;
 	private Tipo tipoAtraccionPreferida;
-	public List<Producto> productosReservados;
 	private List<Producto> productosComprados;
 
 	public Usuario(int id, String nombre, int presupuesto, double tiempoDisponible, Tipo tipoDeAtraccionPreferida) {
@@ -23,7 +22,6 @@ public class Usuario {
 		this.presupuesto = presupuesto;
 		this.tiempoDisponible = tiempoDisponible;
 		this.tipoAtraccionPreferida = tipoDeAtraccionPreferida;
-		this.productosReservados = new ArrayList<Producto>();
 		this.productosComprados = new ArrayList<Producto>();
 	}
 
@@ -32,12 +30,7 @@ public class Usuario {
 		this.presupuesto = presupuesto;
 		this.tiempoDisponible = tiempoDisponible;
 		this.tipoAtraccionPreferida = tipoDeAtraccionPreferida;
-		this.productosReservados = new ArrayList<Producto>();
 		this.productosComprados = new ArrayList<Producto>();
-	}
-
-	public void setProductosReservados(List<Producto> productosNoOfertables) {
-		this.productosReservados = productosNoOfertables;
 	}
 
 	public void setProductosComprados(List<Producto> productosComprados) {
@@ -64,10 +57,6 @@ public class Usuario {
 		return tipoAtraccionPreferida;
 	}
 
-	public List<Producto> obtenerProductosReservados() {
-		return this.productosReservados;
-	}
-
 	public List<Producto> obtenerProductosComprados() {
 		return this.productosComprados;
 	}
@@ -75,7 +64,7 @@ public class Usuario {
 	public String obtenerNombresdeProductosComprados() {
 		String nombreProductosComprados = "";
 		for (Producto p : productosComprados) {
-			nombreProductosComprados += p.getNombre() + "\r\n";
+			nombreProductosComprados += "\t\t\t\t\t" + p.getNombre() + "\r\n";
 		}
 		return nombreProductosComprados;
 	}
@@ -95,11 +84,44 @@ public class Usuario {
 		}
 		return tiempoTotal;
 	}
+	
+	public List<Producto> obtenerListaNoOfertable() {
+        List<Producto> productosNoOfertables = new ArrayList<Producto>();
+        List<Atraccion> atraccionesDePromo = new ArrayList<>();
+        if (this.productosComprados.size() != 0) {
+            for (Producto producto : this.productosComprados) {
+                if (producto.esPromocion()) {
+                    atraccionesDePromo = producto.obtenerAtracciones();
+                    productosNoOfertables.add(producto);
+                    for (Atraccion a : atraccionesDePromo) {
+                        productosNoOfertables.add(a);
+                    }
+                } else {
+                    productosNoOfertables.add(producto);
+                }
+            }
+        }
+        return productosNoOfertables;
+    }
 
 	public boolean comproElProducto(Producto producto) {
-		List<Producto> productosComprados = obtenerProductosReservados();
-		return productosComprados.contains(producto);
-	}
+        List<Producto> productosComprados = obtenerListaNoOfertable();
+        List<Atraccion> atraccionesDePromo = new ArrayList<>();
+
+        boolean comproElProducto = false;
+        if (producto.esPromocion()) {
+            atraccionesDePromo = producto.obtenerAtracciones();
+            for (Atraccion atraccion : atraccionesDePromo) {
+                if (productosComprados.contains(atraccion)) {
+                    comproElProducto = true;
+                    break;
+                }
+            }
+        } else {
+            comproElProducto = productosComprados.contains(producto);
+        }
+        return comproElProducto;
+    } 
 
 	private void restarPresupuesto(int monto) {
 		if (monto > 0) {
@@ -114,26 +136,22 @@ public class Usuario {
 	}
 
 	public void reservarProducto(Producto producto) {
-		List<Atraccion> atracciones = new ArrayList<>();
 		double tiempo = producto.getTiempo();
 		int costo = producto.getCosto();
-		productosReservados.add(producto);
 		productosComprados.add(producto);
 		producto.descontarCupo();
-		if (producto.esPromocion()) {
-			atracciones = producto.obtenerAtracciones();
-			for (Atraccion a : atracciones) {
-				productosReservados.add(a);
-			}
-		}
 		restarTiempoDisponible(tiempo);
 		restarPresupuesto(costo);
 	}
 
 	@Override
 	public String toString() {
-		return " Presupuesto de " + presupuesto + " monedas de oro\n Tiempo de " + Reloj.conversor(tiempoDisponible)
-				+ " horas disponibles \n Preferencia por atracciones de " + tipoAtraccionPreferida + "\n";
+		String perfil  = " 			.\n";
+			   perfil += "			|    Presupuesto de " + presupuesto + " monedas de oro \n";
+			   perfil += "			|  Tiempo de " + Reloj.conversor(tiempoDisponible)+ " horas disponibles\n";
+			   perfil += "			| Preferencia por atracciones de " + tipoAtraccionPreferida + "\n";
+			   perfil += " 			×¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
+		return perfil;
 	}
 
 	@Override

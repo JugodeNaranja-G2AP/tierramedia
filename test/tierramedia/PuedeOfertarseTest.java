@@ -59,13 +59,13 @@ public class PuedeOfertarseTest {
 	}
 
 	@Test
-	public void atraccionReservadaEnPromoEsGuardadaTest() {
-		List<Producto> productosReservados = new ArrayList<Producto>();
-		assertTrue(promo.puedeSerOfertadoA(user3));
-		user3.reservarProducto(promo);
-		productosReservados = user3.obtenerProductosReservados();
-		assertTrue(productosReservados.contains(atraccion1));
-		assertTrue(productosReservados.contains(atraccion2));
-	}
+    public void atraccionReservadaEnPromoEsGuardadaTest() {
+        List<Producto> productosNoOfertables = new ArrayList<Producto>();
+        assertTrue(promo.puedeSerOfertadoA(user3));
+        user3.reservarProducto(promo);
+        productosNoOfertables = user3.obtenerListaNoOfertable();
+        assertTrue(productosNoOfertables.contains(atraccion1));
+        assertTrue(productosNoOfertables.contains(atraccion2));
+    } 
 
 }

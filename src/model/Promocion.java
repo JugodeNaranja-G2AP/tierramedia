@@ -126,16 +126,22 @@ public abstract class Promocion implements Producto {
 	private String formatearAtracciones(List<Atraccion> atracciones) {
         String atraccionesFormateadas = "";
         for(Atraccion a: atracciones){
-          atraccionesFormateadas +=  "- " + a + "\r\n ";
+          atraccionesFormateadas +=  a ;
         }
         return atraccionesFormateadas;
     }
 
 	@Override
 	public String toString() {
-		return "PROMOCION \n Nombre de la Promo: " + nombre + "\n Atracciones que incluye:\n\n " + formatearAtracciones(atracciones)
-				+ "\n Tiempo Total = " + Reloj.conversor(getTiempo()) + ".\n" + descripcion() + " Costo del pack = "
-				+ getCosto() + " monedas de oro\n Tipo = " + tipo + "\n\n";
+		
+		String perfil  = "\t\t\t\t PROMOCION "+ nombre + "\n";
+		       perfil += "\t\t\t\t\t (" + tipo +")\n\n";
+		       perfil +=" Atracciones que incluye " + formatearAtracciones(atracciones)+ "\n";
+		       perfil += "\t|  Tiempo TOTAL: \t" + Reloj.conversor(getTiempo());
+		       perfil += "  |  Costo:  \t" + (getCosto() + ahorro()) + " monedas de oro" + "\n";
+		       perfil += descripcion();
+		       perfil += "\t|\t\t\t\t   Costo TOTAL (c/desc):\t "  + getCosto() + " monedas de oro" + "\n";
+	return perfil;
 	}
 
 	protected abstract String descripcion();
