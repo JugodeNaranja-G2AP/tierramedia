@@ -34,7 +34,8 @@ public class PromoAxB extends Promocion {
 
 	@Override
 	public String descripcion() {
-		return " ¡La atraccion " + atraccionGratis.getNombre() + " es completamente gratis!\n" + " Te ahorrás "
-				+ ahorro() + " monedas de oro.\n";
+		String perfil = "\t|\t\t\t\t\t      |  Descuento:\t " + ahorro() + " monedas de oro" + "\n";
+		perfil += "\t×¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
+		return perfil;
 	}
 }

@@ -2,6 +2,8 @@ package model;
 
 import java.util.List;
 
+import tierramedia.Reloj;
+
 public class PromoAbsoluta extends Promocion {
 
 	private int costoDePromo;
@@ -30,8 +32,10 @@ public class PromoAbsoluta extends Promocion {
 
 	@Override
 	public String descripcion() {
-		return " Esta promo tiene un precio único de " + costoDePromo + " monedas de oro. \n" + " Te ahorrás "
-				+ ahorro() + " monedas de oro.\n";
+		String perfil = "\t|\t\t\t\t\t      |  Descuento:\t "  + ahorro() + " monedas de oro" + "\n";
+		perfil += "\t×¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
+		return perfil;
+
 	}
 
 }

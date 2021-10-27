@@ -75,7 +75,7 @@ public class Usuario {
 	public String obtenerNombresdeProductosComprados() {
 		String nombreProductosComprados = "";
 		for (Producto p : productosComprados) {
-			nombreProductosComprados += p.getNombre() + "\r\n";
+			nombreProductosComprados += "\t\t\t\t\t" + p.getNombre() + "\r\n";
 		}
 		return nombreProductosComprados;
 	}
@@ -132,8 +132,12 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return " Presupuesto de " + presupuesto + " monedas de oro\n Tiempo de " + Reloj.conversor(tiempoDisponible)
-				+ " horas disponibles \n Preferencia por atracciones de " + tipoAtraccionPreferida + "\n";
+		String perfil  = " 			.\n";
+			   perfil += "			|    Presupuesto de " + presupuesto + " monedas de oro \n";
+			   perfil += "			|  Tiempo de " + Reloj.conversor(tiempoDisponible)+ " horas disponibles\n";
+			   perfil += "			| Preferencia por atracciones de " + tipoAtraccionPreferida + "\n";
+			   perfil += " 			×¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
+		return perfil;
 	}
 
 	@Override
