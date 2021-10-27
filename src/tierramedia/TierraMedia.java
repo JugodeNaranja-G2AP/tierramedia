@@ -71,30 +71,25 @@ public class TierraMedia {
 		for (Usuario usuario : this.usuarios) {
 			itinerario = userDAO.obtenerItinerario(usuario);
 			usuario.setProductosComprados(itinerario);
-			cargarListaNoOfertable(usuario, itinerario);
 		}
-	}
-
-	public void cargarListaNoOfertable(Usuario usuario, List<Producto> listaProductos) {
-		List<Atraccion> atraccionesDePromo = new ArrayList<Atraccion>();
-		List<Producto> productosNoOfertables = new ArrayList<Producto>();
-		if (listaProductos.size() != 0) {
-			for (Producto producto : listaProductos) {
-				if (producto.esPromocion()) {
-					atraccionesDePromo = producto.obtenerAtracciones();
-				}
-			}
-			for (Atraccion atraccion : atraccionesDePromo) {
-				productosNoOfertables.add(atraccion);
-			}
-		}
-		usuario.setProductosReservados(productosNoOfertables);
 	}
 
 	public List<Producto> ordenarProductosDeLista(Usuario u) {
 		Collections.sort(this.productos, new OrdenadorDeProducto(u.getTipoDeAtraccionPreferida()));
 		return this.productos;
 	}
+	
+	private void actualizarCupos(Producto producto) {
+        List<Atraccion> atraccionesDePromo = new ArrayList<Atraccion>();
+        if (!producto.esPromocion()) {
+            atraccionDAO.update((Atraccion) producto);
+        } else {
+            atraccionesDePromo = producto.obtenerAtracciones();
+            for (Atraccion atraccion: atraccionesDePromo) {
+                 atraccionDAO.update(atraccion);
+            }
+        }
+    } 
 
 	private String displayBienvenida(Usuario u) {
 		String bienvenida = " ";
@@ -169,9 +164,7 @@ public class TierraMedia {
 						u.reservarProducto(p);
 						userDAO.registrarCompra(u, p);
 						userDAO.update(u);
-						if (!p.esPromocion()) {
-							atraccionDAO.update((Atraccion) p);
-						}
+						actualizarCupos(p);
 						System.out.println(
 								"\t¡Felicitaciones! Adquiriste la " + tipoDeProducto + " " + p.getNombre() + ".");
 						System.out.println("\n                         Presiona enter para continuar");
