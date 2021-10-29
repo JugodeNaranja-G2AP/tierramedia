@@ -2,8 +2,6 @@ package model;
 
 import java.util.List;
 
-import tierramedia.Reloj;
-
 public class PromoAbsoluta extends Promocion {
 
 	private int costoDePromo;

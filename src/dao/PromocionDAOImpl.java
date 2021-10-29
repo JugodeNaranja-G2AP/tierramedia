@@ -16,6 +16,8 @@ import model.Promocion;
 import model.Tipo;
 
 public class PromocionDAOImpl implements PromocionDAO {
+	
+	private String direccion = "jdbc:sqlite:database/tierramedia.db";
 
 	@Override
 	public List<Promocion> findAll() {
@@ -28,7 +30,7 @@ public class PromocionDAOImpl implements PromocionDAO {
 					+ "JOIN tipo_de_atracciones ON tipo_de_atracciones.id = promociones.Tipo\r\n"
 					+ "GROUP BY promociones.nombre\r\n" + "ORDER BY promociones.id";
 
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 			PreparedStatement statement = conn.prepareStatement(sql);
 			ResultSet resultados = statement.executeQuery();
 
@@ -48,7 +50,7 @@ public class PromocionDAOImpl implements PromocionDAO {
 	public int countAll() {
 		try {
 			String sql = "SELECT COUNT(*) AS 'Total_Promociones' FROM promociones";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 			PreparedStatement statement = conn.prepareStatement(sql);
 			ResultSet resultados = statement.executeQuery();
 
@@ -66,7 +68,7 @@ public class PromocionDAOImpl implements PromocionDAO {
 		try {
 			String sql = "INSERT INTO promociones (nombre, tipo, tipo_de_promo_id, atrinuto_de_promo)\r\n"
 					+ " VALUES (?, ?, ?, ?)";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 
@@ -101,7 +103,7 @@ public class PromocionDAOImpl implements PromocionDAO {
 	public int update(Promocion promocion) {
 		try {
 			String sql = "UPDATE promociones SET nombre = ? WHERE id = ?";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, promocion.getNombre());
@@ -118,7 +120,7 @@ public class PromocionDAOImpl implements PromocionDAO {
 	public int delete(Promocion promocion) {
 		try {
 			String sql = "DELETE FROM promociones WHERE id = ?";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, promocion.getId());
@@ -141,7 +143,7 @@ public class PromocionDAOImpl implements PromocionDAO {
 					+ "JOIN tipo_de_atracciones ON tipo_de_atracciones.id = promociones.tipo\r\n"
 					+ "WHERE promociones.id = ?";
 
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, promocionId);
 			ResultSet resultados = statement.executeQuery();
