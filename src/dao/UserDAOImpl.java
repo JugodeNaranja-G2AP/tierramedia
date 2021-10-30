@@ -16,13 +16,15 @@ import tierramedia.Producto;
 
 public class UserDAOImpl implements UserDAO {
 
+	private static String direccion = "jdbc:sqlite:database/tierramedia.db";
+
 	@Override
 	public List<Usuario> findAll() {
 		try {
 			String sql = "SELECT usuarios.id, usuarios.nombre, usuarios.dinero_disponible, usuarios.tiempo_disponible, tipo_de_atracciones.tipo\r\n"
 					+ "FROM usuarios\r\n"
 					+ "JOIN tipo_de_atracciones ON tipo_de_atracciones.id = usuarios.tipo_actividad_preferida_id";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 			PreparedStatement statement = conn.prepareStatement(sql);
 			ResultSet resultados = statement.executeQuery();
 
@@ -41,7 +43,7 @@ public class UserDAOImpl implements UserDAO {
 	public int countAll() {
 		try {
 			String sql = "SELECT COUNT(*) AS 'Usuarios_Totales' FROM usuarios";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 			PreparedStatement statement = conn.prepareStatement(sql);
 			ResultSet resultados = statement.executeQuery();
 
@@ -59,7 +61,7 @@ public class UserDAOImpl implements UserDAO {
 		try {
 
 			String sql = "INSERT INTO usuarios (nombre, dinero_disponible, tiempo_disponible, tipo_actividad_preferida_id) VALUES (?, ?, ?, ?)";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, usuario.getNombre());
@@ -79,7 +81,7 @@ public class UserDAOImpl implements UserDAO {
 	public int update(Usuario usuario) {
 		try {
 			String sql = "UPDATE usuarios SET dinero_disponible = ?, tiempo_disponible = ? WHERE id = ?";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, usuario.getPresupuesto());
@@ -97,7 +99,7 @@ public class UserDAOImpl implements UserDAO {
 	public int delete(Usuario usuario) {
 		try {
 			String sql = "DELETE FROM usuarios WHERE id = ?";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, usuario.getId());
@@ -116,7 +118,7 @@ public class UserDAOImpl implements UserDAO {
 					+ "FROM usuarios\r\n"
 					+ "JOIN tipo_de_atracciones ON tipo_de_atracciones.id = usuarios.tipo_actividad_preferida_id\r\n"
 					+ "WHERE usuarios.id = ?";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, userId);
 			ResultSet resultados = statement.executeQuery();
@@ -138,7 +140,7 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			String sql = "SELECT usuario_id, group_concat(promo_id) AS 'Lista_de_promociones' , group_concat(atraccion_id) AS 'Lista_de_atracciones'\r\n"
 					+ "FROM productos_comprados\r\n" + "WHERE usuario_id = ? \r\n" + "GROUP BY usuario_id";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, usuario.getId());
 			ResultSet resultados = statement.executeQuery();
@@ -162,7 +164,7 @@ public class UserDAOImpl implements UserDAO {
 		try {
 
 			String sql = "INSERT INTO productos_comprados (usuario_id, promo_id, atraccion_id) VALUES (?, ?, ?)";
-			Connection conn = ConnectionProvider.getConnection();
+			Connection conn = ConnectionProvider.getConnection(direccion);
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 

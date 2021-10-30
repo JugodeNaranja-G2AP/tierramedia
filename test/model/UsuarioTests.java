@@ -8,8 +8,7 @@ import org.junit.Test;
 public class UsuarioTests {
 
 	Usuario usuarioPrueba = new Usuario("UsuarioPrueba", 12, 7, Tipo.DEGUSTACION);
-	// String nombre, double costoDeVisita, int tiempoDeVisita, int cupoDePersonas,
-	// Tipo tipo
+
 	Atraccion atraccion1 = new Atraccion("Minas Tirith", 5, 2, 25, Tipo.PAISAJE);
 	Atraccion atraccion2 = new Atraccion("Abismo de Helm", 5, 2, 15, Tipo.DEGUSTACION);
 	Atraccion atraccion3 = new Atraccion("Erebor", 12, 3, 32, Tipo.AVENTURA);
