@@ -12,8 +12,8 @@ import model.Atraccion;
 import model.Tipo;
 
 public class AtraccionDAOImpl implements AtraccionDAO {
-	
-	private String direccion = "jdbc:sqlite:database/tierramedia.db";
+
+	private static String direccion = "jdbc:sqlite:database/tierramedia.db";
 
 	@Override
 	public List<Atraccion> findAll() {

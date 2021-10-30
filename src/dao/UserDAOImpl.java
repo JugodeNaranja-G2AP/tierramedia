@@ -16,7 +16,7 @@ import tierramedia.Producto;
 
 public class UserDAOImpl implements UserDAO {
 
-	private String direccion = "jdbc:sqlite:database/tierramedia.db";
+	private static String direccion = "jdbc:sqlite:database/tierramedia.db";
 
 	@Override
 	public List<Usuario> findAll() {

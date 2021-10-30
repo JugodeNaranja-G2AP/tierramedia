@@ -16,8 +16,8 @@ import model.Promocion;
 import model.Tipo;
 
 public class PromocionDAOImpl implements PromocionDAO {
-	
-	private String direccion = "jdbc:sqlite:database/tierramedia.db";
+
+	private static String direccion = "jdbc:sqlite:database/tierramedia.db";
 
 	@Override
 	public List<Promocion> findAll() {
@@ -65,11 +65,11 @@ public class PromocionDAOImpl implements PromocionDAO {
 
 	@Override
 	public int insert(Promocion promocion) {
+
 		try {
 			String sql = "INSERT INTO promociones (nombre, tipo, tipo_de_promo_id, atrinuto_de_promo)\r\n"
 					+ " VALUES (?, ?, ?, ?)";
 			Connection conn = ConnectionProvider.getConnection(direccion);
-
 			PreparedStatement statement = conn.prepareStatement(sql);
 
 			if (promocion.getClase().equals(ClaseDePromo.PROMO_ABSOLUTA)) {
