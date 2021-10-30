@@ -56,7 +56,6 @@ public class UsuarioTests {
 	@Test
 	public void obtenerNombresdeProductosCompradosTest() {
 		String nombresEsperados = "\t\t\t\t\tMinas Tirith\r\n\t\t\t\t\tAbismo de Helm\r\n";
-
 		assertEquals(nombresEsperados, usuarioPrueba.obtenerNombresdeProductosComprados());
 	}
 
