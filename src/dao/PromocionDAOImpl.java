@@ -67,7 +67,7 @@ public class PromocionDAOImpl implements PromocionDAO {
 	public int insert(Promocion promocion) {
 
 		try {
-			String sql = "INSERT INTO promociones (nombre, tipo, tipo_de_promo_id, atrinuto_de_promo)\r\n"
+			String sql = "INSERT INTO promociones (nombre, tipo, tipo_de_promo_id, atributo_de_promo)\r\n"
 					+ " VALUES (?, ?, ?, ?)";
 			Connection conn = ConnectionProvider.getConnection(direccion);
 			PreparedStatement statement = conn.prepareStatement(sql);
